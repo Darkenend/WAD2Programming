@@ -6,13 +6,13 @@
 </head>
 <body>
 <?php
-setlocale(LC_ALL, 'es_ES');
+setlocale(LC_ALL, 'es_ES.utf8');
 $year=1998;
 $month=1;
 $day=11;
 $date=mktime(10,11,7, $month, $day, $year);
 $days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-echo "Nací el ".date( 'l', $date).", ".date('d', $date)." de ".date('F', $date)." del ".date('Y', $date);
+echo "Nací el <b><i>".date( 'l', $date)."</i>, ".date('d', $date)." de ".date('F', $date)." del ".date('Y', $date)."</b>";
 echo "<br>";
 echo "<br>";
 echo "<table><tr>";
