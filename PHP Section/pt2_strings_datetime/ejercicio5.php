@@ -12,9 +12,9 @@ $end = new DateTime('last day of this month');
 $skip = new DatePeriod($start, $interval, $end);
 
 echo "<h1>".'&lt&lt'.'Calendario'.'>>'."</h1>";
-echo "<br><br><br><br>";
+echo "<br>";
 
-foreach ($skip as $date) echo 'Dia '.$date->format('d').': '.$date->format('l').PHP_EOL;
+foreach ($skip as $date) echo 'Dia '.$date->format('d').': '.$date->format('l').'<br>';
 
 ?>
 </body>
