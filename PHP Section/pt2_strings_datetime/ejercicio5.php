@@ -14,7 +14,7 @@ $skip = new DatePeriod($start, $interval, $end);
 echo "<h1>".'&lt&lt'.'Calendario'.'>>'."</h1>";
 echo "<br><br><br><br>";
 
-foreach ($skip as $date) echo 'Dia '.$date->format('d').': '.$date->format('l');
+foreach ($skip as $date) echo 'Dia '.$date->format('d').': '.$date->format('l').PHP_EOL;
 
 ?>
 </body>
