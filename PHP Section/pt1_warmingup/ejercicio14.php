@@ -10,7 +10,7 @@
 <body>
     <?php
     /* Codigo original:
-     * $x = -1;
+     * $x = -0;
      * $y = 9;
      * $suma = $x + $y;
      * print("El valor de x es <i>$x</i><br>") Necesita un Punto y Coma
