@@ -1,0 +1,92 @@
+/* Extended Bold debe usarse en Titulos o Subtitulos */
+@font-face {
+    font-family: 'Audi-ExtendedBold';
+    src:    url("font/woff/AudiType-Latin-ExtendedBold.woff2") format('woff2'),
+    url("font/woff/AudiType-Latin-ExtendedBold.woff") format('woff');
+}
+
+/* Extended Normal debe usarse en Subtitulos */
+@font-face {
+    font-family: 'Audi-ExtendedNormal';
+    src:    url("font/woff/AudiType-Latin-ExtendedNormal.woff2") format('woff2'),
+    url("font/woff/AudiType-Latin-ExtendedNormal.woff") format('woff');
+}
+
+/* Bold sera usado en muy raras ocasiones */
+@font-face {
+    font-family: 'Audi-Bold';
+    src:    url("font/woff/AudiTypeScreen-Latin-Bold.woff2") format('woff2'),
+    url("font/woff/AudiTypeScreen-Latin-Bold.woff") format('woff');
+}
+
+/* Normal sera usado para Botones, Textos y Textos Interactivos */
+@font-face {
+    font-family: 'Audi-Normal';
+    src:    url("font/woff/AudiTypeScreen-Latin-Normal.woff2") format('woff2'),
+    url("font/woff/AudiTypeScreen-Latin-Normal.woff") format('woff');
+}
+
+/* Light sera usado para Textos Interactivos */
+@font-face {
+    font-family: 'Audi-Light';
+    src:    url("font/woff/AudiTypeScreen-Latin-Light.woff2") format('woff2'),
+    url("font/woff/AudiTypeScreen-Latin-Light.woff") format('woff');
+}
+
+:root {
+    --white:		    rgba(255, 255, 255, 1);
+    --black: 		    rgba(0, 0, 0, 1);
+    --silver: 		    rgba(179, 179, 179, 1);
+    --red: 			    rgba(187, 10, 48, 1);
+    --warm-silver: 	    rgba(182, 177, 169, 1);
+    --audi-transition:  cubic-bezier(0.75, 0.02, 0.5, 1);
+}
+
+html {
+    font-family: 'Audi-Normal', sans-serif;
+}
+
+body {
+    background: var(--silver);
+}
+
+table {
+    border-collapse: collapse;
+    width: 66%;
+    text-align: center;
+}
+
+table td, table th {
+    border: 1px solid var(--black);
+    padding: 8px;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--silver);
+}
+
+table td {
+    font-family: 'Audi-Light', sans-serif;
+}
+
+table tr:hover {
+    background-color: var(--black);
+    color: var(--white);
+    -webkit-transition: all 0.2s var(--audi-transition);
+    -moz-transition: all 0.2s var(--audi-transition);
+    -ms-transition: all 0.2s var(--audi-transition);
+    -o-transition: all 0.2s var(--audi-transition);
+    transition: all 0.2s var(--audi-transition);
+}
+
+table th {
+    text-align: left;
+    background-color: var(--red);
+    color: white;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, var(--red), rgba(0,0,0,0), var(--red));
+}

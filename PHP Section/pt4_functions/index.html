@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Funciones</title>
+    <link rel="stylesheet" type="text/css" href="css/master.css">
+</head>
+<body>
+<nav>
+    <h2>Funciones en PHP</h2>
+    <button id="opener" onclick="open_side()" class="interruptor">Open</button>
+</nav>
+<main>
+    <div id="my_sidebar" style="margin-left: -25%;">
+        <button onclick="close_side()" class="interruptor">Close</button>
+        <hr>
+        <a href="ejercicio1.php">Ejercicio 1</a>
+        <hr>
+        <a href="ejercicio2.php">Ejercicio 2</a>
+        <hr>
+        <a href="ejercicio3.php">Ejercicio 3</a>
+        <hr>
+        <a href="ejercicio4.php">Ejercicio 4</a>
+        <hr>
+        <a href="ejercicio5.php">Ejercicio 5</a>
+        <hr>
+        <a href="ejercicio6.php">Ejercicio 6</a>
+        <hr>
+        <a href="ejercicio7.php">Ejercicio 7</a>
+        <hr>
+        <a href="ejercicio8.php">Ejercicio 8</a>
+        <hr>
+        <a href="ejercicio9.php">Ejercicio 9</a>
+        <hr>
+        <a href="ejercicio10.php">Ejercicio 10</a>
+        <hr>
+        <a href="ejercicio11.php">Ejercicio 11</a>
+        <hr>
+    </div>
+    <div id="content_wrapper">
+        <h2>
+            Bienvenido a los ejercicios de funciones
+        </h2>
+        <p>
+            Vete a alguno de los ejercicios en la barra de navegacion de la izquierda para poder realizarlos mediante un
+            formulario, disfruta.
+        </p>
+    </div>
+</main>
+<script>
+    //Button that opens and closes
+    function open_side() {
+        document.getElementById("content_wrapper").style.marginLeft = "10%";
+        document.getElementById("my_sidebar").style.marginLeft = "0%";
+        document.getElementById("opener").style.display = "none";
+    }
+
+    function close_side() {
+        document.getElementById("content_wrapper").style.marginLeft = "0%";
+        document.getElementById("my_sidebar").style.marginLeft = "-25%";
+        document.getElementById("opener").style.display = "inline-block";
+    }
+</script>
+<script>
+    //Background color script
+    let d = new Date();
+    let n = d.getHours();
+    console.log("Hours: " + n);
+    if (n > 6 && n < 17) {
+        document.body.style.backgroundColor = "var(--white)";
+    } else {
+        document.body.style.backgroundColor = "var(--silver)";
+    }
+</script>
+</body>
+</html>

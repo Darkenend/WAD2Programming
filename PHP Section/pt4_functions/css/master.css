@@ -1,0 +1,107 @@
+/* Extended Bold debe usarse en Titulos o Subtitulos */
+@font-face {
+    font-family: 'Audi-ExtendedBold';
+    src: url("font/woff/AudiType-Latin-ExtendedBold.woff2") format('woff2'),
+    url("font/woff/AudiType-Latin-ExtendedBold.woff") format('woff');
+}
+
+/* Extended Normal debe usarse en Subtitulos */
+@font-face {
+    font-family: 'Audi-ExtendedNormal';
+    src: url("font/woff/AudiType-Latin-ExtendedNormal.woff2") format('woff2'),
+    url("font/woff/AudiType-Latin-ExtendedNormal.woff") format('woff');
+}
+
+/* Bold sera usado en muy raras ocasiones */
+@font-face {
+    font-family: 'Audi-Bold';
+    src: url("font/woff/AudiTypeScreen-Latin-Bold.woff2") format('woff2'),
+    url("font/woff/AudiTypeScreen-Latin-Bold.woff") format('woff');
+}
+
+/* Normal sera usado para Botones, Textos y Textos Interactivos */
+@font-face {
+    font-family: 'Audi-Normal';
+    src: url("font/woff/AudiTypeScreen-Latin-Normal.woff2") format('woff2'),
+    url("font/woff/AudiTypeScreen-Latin-Normal.woff") format('woff');
+}
+
+/* Light sera usado para Textos Interactivos */
+@font-face {
+    font-family: 'Audi-Light';
+    src: url("font/woff/AudiTypeScreen-Latin-Light.woff2") format('woff2'),
+    url("font/woff/AudiTypeScreen-Latin-Light.woff") format('woff');
+}
+
+:root {
+    --white: rgb(255, 255, 255);
+    --black: rgb(0, 0, 0);
+    --silver: rgb(179, 179, 179);
+    --red: rgb(187, 10, 48);
+    --warm-silver: rgb(182, 177, 169);
+}
+
+html {
+    font-family: 'Audi-Normal', sans-serif;
+    line-height: 1rem;
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    text-align: justify;
+}
+
+nav {
+    background-color: var(--warm-silver);
+    padding: 1rem;
+}
+
+a {
+    font-family: 'Audi-Light', sans-serif;
+    text-decoration: none;
+    color: var(--red);
+}
+
+hr {
+    border: 0;
+    width: 100%;
+    background-color: var(--black);
+    height: 1px;
+}
+
+#my_sidebar {
+    float: left;
+    background-color: var(--warm-silver);
+    height: 100%;
+    width: 10%;
+}
+
+#my_sidebar, #content_wrapper {
+    -webkit-transition: margin-left 1s;
+    -moz-transition: margin-left 1s;
+    -ms-transition: margin-left 1s;
+    -o-transition: margin-left 1s;
+    transition: margin-left 1s;
+}
+
+#my_sidebar button, a {
+    margin-left: 1rem;
+}
+
+#content_wrapper {
+    padding: 2rem;
+}
+
+.interruptor {
+    background-color: var(--red);
+    border: none;
+    color: var(--silver);
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+}
