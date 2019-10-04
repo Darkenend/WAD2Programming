@@ -63,6 +63,42 @@ class Cuenta_Joven extends Cuenta
         return "<tr><td>" . $this->getOwnerName() . "</td><td>" . $this->getAccountNumber() . "</td><td>" . $this->getAccountType() . "</td><td>" . $this->getBalance() . "€</td><td>" . $this->getCardDiscount() . "%</td></tr>";
     }
 
+    private function generateAge(): int {
+        $to = new DateTime('now');
+        $xd = $this->generateDate($to);
+        try {
+            $from = new DateTime($xd);
+        } catch (Exception $e) {
+            debug_to_console($e->getMessage());
+        }
+        return $from->diff($to)->y;
+    }
+
+    private function generateDate(DateTime $to): string {
+        try {
+            $y = random_int((int)$to->format('y')-30, (int)$to->format('y'));
+        } catch (Exception $e) {
+            $y = (int)$to->format('y')-30;
+            debug_to_console($e->getMessage());
+        }
+        try {
+            $m = random_int(1, 12);
+        } catch (Exception $e) {
+            $m = 1;
+            debug_to_console($e->getMessage());
+        }
+        try {
+            $tempdate = new DateTime("$y-$m-01");
+            $tempdate->modify('+1 month');
+            $tempdate->modify('-1 day');
+            $d = random_int(1, (int) $tempdate->format('d'));
+        } catch (Exception $e) {
+            $d = 1;
+            debug_to_console($e->getMessage());
+        }
+        return "$y-$m-$d";
+    }
+
     /**
      * @return int
      */
@@ -78,6 +114,4 @@ class Cuenta_Joven extends Cuenta
     {
         $this->card_discount = $card_discount;
     }
-
-
 }

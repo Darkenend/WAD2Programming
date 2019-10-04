@@ -32,6 +32,10 @@ abstract class Cuenta_Ahorro extends Cuenta
         }
     }
 
+    /**
+     * This function returns a string with the most important data of the account in a certain order, formatted for a table row in HTML
+     * @return string Data of account in a HTML Table Row
+     */
     function imprimir()
     {
         return "<tr><td>".$this->getOwnerName()."</td><td>".$this->getAccountNumber()."</td><td>".$this->getAccountType()."</td><td>".$this->getBalance()."€</td><td>".$this->getInterestRate()."%</td></tr>";
