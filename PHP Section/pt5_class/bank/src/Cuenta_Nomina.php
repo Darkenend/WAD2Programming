@@ -6,8 +6,8 @@ class Cuenta_Nomina extends Cuenta
     private $work_status;
     /** @var int */
     private $CARD_DISCOUNT;
-    /** @var int */
-    private $ACCOUNT_NEGATIVE_LIMIT = -100;
+    /** @var float */
+    private $ACCOUNT_NEGATIVE_LIMIT;
 
     /**
      * Cuenta_Nomina constructor.
@@ -20,6 +20,7 @@ class Cuenta_Nomina extends Cuenta
         $this->setOwnerName($owner_name);
         $this->setAccountNumber($account_number);
         $this->setBalance($balance);
+        $this->setACCOUNTNEGATIVELIMIT(-100);
         if ($work_status != "temporal" && $work_status != "indefinido") {
             $this->setWorkStatus("indefinido");
         } else {
@@ -77,5 +78,21 @@ class Cuenta_Nomina extends Cuenta
     public function setCARDDISCOUNT(int $CARD_DISCOUNT): void
     {
         $this->CARD_DISCOUNT = $CARD_DISCOUNT;
+    }
+
+    /**
+     * @return float
+     */
+    public function getACCOUNTNEGATIVELIMIT(): float
+    {
+        return $this->ACCOUNT_NEGATIVE_LIMIT;
+    }
+
+    /**
+     * @param int $ACCOUNT_NEGATIVE_LIMIT
+     */
+    private function setACCOUNTNEGATIVELIMIT(float $ACCOUNT_NEGATIVE_LIMIT): void
+    {
+        $this->ACCOUNT_NEGATIVE_LIMIT = $ACCOUNT_NEGATIVE_LIMIT;
     }
 }

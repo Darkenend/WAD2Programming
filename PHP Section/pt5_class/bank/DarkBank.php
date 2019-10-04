@@ -117,12 +117,23 @@ function randomFloat($min, $max, $zeros) {
  * @return string Message to add to $transaction_history
  */
 function transaction($account_send, $account_recieve, $money) {
-    if ($account_send->getBalance() < $money) {
-        $account_send->extraer($money);
-        $account_recieve->ingresar($money);
-        return $account_send->getAccountNumber()." ha transferido ".$money."€ a ".$account_recieve->getAccountNumber();
+    // We check if the account is a Cuenta Nomina so we can use the -100 limit
+    if ($account_send instanceof Cuenta_Nomina) {
+        if ($account_send->getBalance()+100 < $money) {
+            $account_send->extraer($money);
+            $account_recieve->ingresar($money);
+            return $account_send->getAccountNumber()." ha transferido ".$money."€ a ".$account_recieve->getAccountNumber();
+        } else {
+            return "No se ha podido transferir entre las cuentas debido a que la cuenta de origen no dispone de fondos suficientes.";
+        }
     } else {
-        return "No se ha podido transferir entre las cuentas debido a que la cuenta de origen no dispone de fondos suficientes.";
+        if ($account_send->getBalance() < $money) {
+            $account_send->extraer($money);
+            $account_recieve->ingresar($money);
+            return $account_send->getAccountNumber()." ha transferido ".$money."€ a ".$account_recieve->getAccountNumber();
+        } else {
+            return "No se ha podido transferir entre las cuentas debido a que la cuenta de origen no dispone de fondos suficientes.";
+        }
     }
 }
 
