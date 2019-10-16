@@ -1,10 +1,9 @@
 // Get info
-let conversion = confirm("Press OK to convert from C to F, cancel for the opposite");
 let temperature = parseFloat(prompt("Insert the temperature to convert in number"));
-// Make sure it's a proper number
 while (isNaN(temperature)) {
-    temperature = parseFloat(prompt("Insert the temperature to convert in number"));
+    temperature = parseFloat(prompt("ERROR: Insert the temperature to convert in number"));
 }
+let conversion = confirm("Press OK to convert from C to F, cancel for the opposite");
 if (conversion) {
     alert("The Temperature is "+celsiusToFahrenheit(temperature)+"F");
 } else {
