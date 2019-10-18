@@ -22,11 +22,26 @@
                 </div>
                 <div class="form-group">
                     <label for="startDate">Start Date of Calendar</label>
-                    <input type="date" class="form-control" id="startDate">
+                    <input type="date" name="startDate" class="form-control" id="startDate">
+                    <label for="endDate">End Date of Calendar</label>
+                    <input type="date" name="endDate" class="form-control" id="endDate">
                 </div>
                 <div class="form-group">
-                    <label for="endDate">End Date of Calendar</label>
-                    <input type="date" class="form-control" id="endDate">
+                    <label for="startVacation1">Start of Vacation Period 1</label>
+                    <input type="date" name="startVacation" class="form-control" id="startVacation1">
+                    <label for="endVacation1">End of Vacation Period 1</label>
+                    <input type="date" name="endVacation" class="form-control" id="endVacation1">
+                </div>
+                <div class="form-group">
+                    <label for="startVacation2">Start of Vacation Period 2</label>
+                    <input type="date" name="startVacation" class="form-control" id="startVacation2">
+                    <label for="endVacation2">End of Vacation Period 2</label>
+                    <input type="date" name="endVacation" class="form-control" id="endVacation2">
+                </div>
+                <div id="dayVacationDiv" class="form-group">
+                    <label for="dayVacation1">Vacation Day 1</label>
+                    <input type="date" class="form-control" id="dayVacation1">
+                    // TODO: Add button to add another input like the one before with JavaScript
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
