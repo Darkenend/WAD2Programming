@@ -1,7 +1,9 @@
-let result;
-let accTok = confirm("Press 'OK' if you want to input a military hour time or 'Cancel' a UTC time");
-let userInput = prompt("Insert the number:");
-let pat;
+let result, userInput, pat, accTok;
+let accTok_h = prompt("Do you want to input a [M]ilitary time or a [U]TC Timestamp");
+while (accTok_h !== "M" && accTok_h !== "U") {
+    accTok_h = prompt("ERROR. [M]ilitary Time or [U]TC Timestamp");
+}
+accTok = accTok_h === "M";
 if (accTok) {
     pat = new RegExp(/[0-9]{4}/);
     while (!pat.test(userInput)) {
@@ -14,7 +16,10 @@ if (accTok) {
         userInput = prompt("Insert the number in a numeric format:");
     }
     xd = new Date(parseInt(userInput));
-    console.log(xd.toString());
-    result = xd.getHours()+":"+xd.getMinutes();
+    if (xd.getMinutes()<10) {
+        result = xd.getHours()+":0"+xd.getMinutes();
+    } else {
+        result = xd.getHours()+":"+xd.getMinutes();
+    }
 }
 alert("The end result is: "+result);
