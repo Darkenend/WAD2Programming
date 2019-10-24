@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -15,7 +16,7 @@
 <div class="container-fluid pt-3">
     <div class="row">
         <div class="col-6 offset-3">
-            <form action="calendar.php">
+            <form action="calendar.php" method="post">
                 <div class="form-group">
                     <label for="calendarName">Name of the Calendar</label>
                     <input type="text" class="form-control" id="calendarName" placeholder="Calendar Name">
@@ -28,31 +29,59 @@
                 </div>
                 <div class="form-group">
                     <label for="startVacation1">Start of Vacation Period 1</label>
-                    <input type="date" name="startVacation" class="form-control" id="startVacation1">
+                    <input type="date" name="startVacation[]" class="form-control" id="startVacation1">
                     <label for="endVacation1">End of Vacation Period 1</label>
-                    <input type="date" name="endVacation" class="form-control" id="endVacation1">
+                    <input type="date" name="endVacation[]" class="form-control" id="endVacation1">
                 </div>
                 <div class="form-group">
                     <label for="startVacation2">Start of Vacation Period 2</label>
-                    <input type="date" name="startVacation" class="form-control" id="startVacation2">
+                    <input type="date" name="startVacation[]" class="form-control" id="startVacation2">
                     <label for="endVacation2">End of Vacation Period 2</label>
-                    <input type="date" name="endVacation" class="form-control" id="endVacation2">
+                    <input type="date" name="endVacation[]" class="form-control" id="endVacation2">
                 </div>
                 <div class="form-group">
                     <label for="startVacation3">Start of Vacation Period 3</label>
-                    <input type="date" name="startVacation" class="form-control" id="startVacation3">
-                    <label for="endVacation2">End of Vacation Period 3</label>
-                    <input type="date" name="endVacation" class="form-control" id="endVacation3">
+                    <input type="date" name="startVacation[]" class="form-control" id="startVacation3">
+                    <label for="endVacation3">End of Vacation Period 3</label>
+                    <input type="date" name="endVacation[]" class="form-control" id="endVacation3">
                 </div>
                 <div id="dayVacationDiv" class="form-group">
                     <label for="dayVacation1">Vacation Day 1</label>
-                    <input type="date" class="form-control" id="dayVacation1">
-                    <!-- // TODO: Add button to add another input like the one before with JavaScript -->
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation1">
+                    <label for="dayVacation2" hidden>Vacation Day 2</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation2" hidden>
+                    <label for="dayVacation3" hidden>Vacation Day 3</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation3" hidden>
+                    <label for="dayVacation4" hidden>Vacation Day 4</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation4" hidden>
+                    <label for="dayVacation5" hidden>Vacation Day 5</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation5" hidden>
+                    <label for="dayVacation6" hidden>Vacation Day 6</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation6" hidden>
+                    <label for="dayVacation7" hidden>Vacation Day 7</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation7" hidden>
+                    <label for="dayVacation8" hidden>Vacation Day 8</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation8" hidden>
+                    <label for="dayVacation9" hidden>Vacation Day 9</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation9" hidden>
+                    <label for="dayVacation10" hidden>Vacation Day 10</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation10" hidden>
+                    <label for="dayVacation11" hidden>Vacation Day 11</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation11" hidden>
+                    <label for="dayVacation12" hidden>Vacation Day 12</label>
+                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation12" hidden>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="addDayButton" class="btn btn-secondary" onclick="addVacationDay()">Add Vacation Day</button>
+                <button type="reset" class="btn btn-danger" onclick="hideAllExtraDays()">Reset</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </div>
     </div>
 </div>
+<footer class="footer navbar navbar-expand-lg navbar-dark bg-dark mt-3">
+    <a href="https://github.com/Darkenend">
+        Made by Álvaro "Darkenend" Real
+    </a>
+</footer>
 </body>
 </html>
