@@ -67,6 +67,30 @@ class Base
         $this->setPeriodLength($xd);
     }
 
+    function checkPeriod(DateTime $workDate): int {
+        $base = $this->getStartDate();
+        $end = new DateTime($base->add(new DateInterval("P".$this->getPeriodLength()[0]."D")));
+        for ($i = 0; $i < sizeof($this->getPeriodLength()); $i++) {
+            if ($i != 0) {
+                $base = new DateTime($base->add(new DateInterval("P".$this->getPeriodLength()[$i]."D")));
+                $end = new DateTime($end->add(new DateInterval("P".$this->getPeriodLength()[$i+1]."D")));
+            }
+            if ($base <= $workDate && $workDate <= $end) {
+                return $i+1;
+            }
+        }
+        return -1;
+    }
+
+    function checkVacationDay(DateTime $workDate): bool {
+        for ($i = 0; $i < sizeof($this->getFestiveDays()); $i++) {
+            if ($this->getFestiveDays()[$i]->format('m-d') == $workDate->format('m-d')) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * @return DateTime
      */
