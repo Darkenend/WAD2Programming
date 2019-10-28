@@ -74,8 +74,7 @@ for ($i = 0; $i < 4; $i++) {
 }
 
 $myCalendar = new Base($startDate, $endDate, $startVacation, $endVacation, $dayVacation, $dayEvaluation);
-$monthDelta = date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format("m");
-echo $monthDelta."<br>";
+$monthDelta = intval(date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format('%m'))+1;
 
 // Start of the web page, setting a Bootstrap-based layout
 require "views/html_top.views.php";
@@ -83,7 +82,7 @@ echo "<div class=\"container-fluid pt-3\">";
 echo "<div class=\"row\">";
 echo "<div class=\"col-4 offset-4\">";
 echo "<h1 class='text-center'>" . $calendarName . "</h1><br>";
-for ($i = 0; $i < 6; $i++) {
+for ($i = 0; $i < $monthDelta; $i++) {
     echo "placeholder";
 }
 for ($i = 0; $i < 3; $i++) {
