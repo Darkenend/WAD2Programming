@@ -19,59 +19,74 @@
             <form action="calendar.php" method="post">
                 <div class="form-group">
                     <label for="calendarName">Name of the Calendar</label>
-                    <input type="text" class="form-control" id="calendarName" placeholder="Calendar Name">
+                    <input type="text" name="calendarName" class="form-control" id="calendarName" placeholder="Calendar Name">
                 </div>
                 <div class="form-group">
                     <label for="startDate">Start Date of Calendar</label>
-                    <input type="date" name="startDate" class="form-control" id="startDate">
+                    <input type="date" name="startDate" class="form-control" id="startDate" value="">
                     <label for="endDate">End Date of Calendar</label>
-                    <input type="date" name="endDate" class="form-control" id="endDate">
+                    <input type="date" name="endDate" class="form-control" id="endDate" value="">
                 </div>
                 <div class="form-group">
                     <label for="startVacation1">Start of Vacation Period 1</label>
-                    <input type="date" name="startVacation[]" class="form-control" id="startVacation1">
+                    <input type="date" name="startVacation1" class="form-control" id="startVacation1" value="">
                     <label for="endVacation1">End of Vacation Period 1</label>
-                    <input type="date" name="endVacation[]" class="form-control" id="endVacation1">
+                    <input type="date" name="endVacation1" class="form-control" id="endVacation1" value="">
                 </div>
                 <div class="form-group">
                     <label for="startVacation2">Start of Vacation Period 2</label>
-                    <input type="date" name="startVacation[]" class="form-control" id="startVacation2">
+                    <input type="date" name="startVacation2" class="form-control" id="startVacation2" value="">
                     <label for="endVacation2">End of Vacation Period 2</label>
-                    <input type="date" name="endVacation[]" class="form-control" id="endVacation2">
+                    <input type="date" name="endVacation2" class="form-control" id="endVacation2" value="">
                 </div>
                 <div class="form-group">
                     <label for="startVacation3">Start of Vacation Period 3</label>
-                    <input type="date" name="startVacation[]" class="form-control" id="startVacation3">
+                    <input type="date" name="startVacation3" class="form-control" id="startVacation3" value="">
                     <label for="endVacation3">End of Vacation Period 3</label>
-                    <input type="date" name="endVacation[]" class="form-control" id="endVacation3">
+                    <input type="date" name="endVacation3" class="form-control" id="endVacation3" value="">
                 </div>
                 <div id="dayVacationDiv" class="form-group">
                     <label for="dayVacation1">Vacation Day 1</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation1">
+                    <input type="date" name="dayVacation1" class="form-control" id="dayVacation1" value="">
                     <label for="dayVacation2" hidden>Vacation Day 2</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation2" hidden>
+                    <input type="date" name="dayVacation2" class="form-control" id="dayVacation2" value="" hidden>
                     <label for="dayVacation3" hidden>Vacation Day 3</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation3" hidden>
+                    <input type="date" name="dayVacation3" class="form-control" id="dayVacation3" value="" hidden>
                     <label for="dayVacation4" hidden>Vacation Day 4</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation4" hidden>
+                    <input type="date" name="dayVacation4" class="form-control" id="dayVacation4" value="" hidden>
                     <label for="dayVacation5" hidden>Vacation Day 5</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation5" hidden>
+                    <input type="date" name="dayVacation5" class="form-control" id="dayVacation5" value="" hidden>
                     <label for="dayVacation6" hidden>Vacation Day 6</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation6" hidden>
+                    <input type="date" name="dayVacation6" class="form-control" id="dayVacation6" value="" hidden>
                     <label for="dayVacation7" hidden>Vacation Day 7</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation7" hidden>
+                    <input type="date" name="dayVacation7" class="form-control" id="dayVacation7" value="" hidden>
                     <label for="dayVacation8" hidden>Vacation Day 8</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation8" hidden>
+                    <input type="date" name="dayVacation8" class="form-control" id="dayVacation8" value="" hidden>
                     <label for="dayVacation9" hidden>Vacation Day 9</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation9" hidden>
+                    <input type="date" name="dayVacation9" class="form-control" id="dayVacation9" value="" hidden>
                     <label for="dayVacation10" hidden>Vacation Day 10</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation10" hidden>
+                    <input type="date" name="dayVacation10" class="form-control" id="dayVacation10" value="" hidden>
                     <label for="dayVacation11" hidden>Vacation Day 11</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation11" hidden>
+                    <input type="date" name="dayVacation11" class="form-control" id="dayVacation11" value="" hidden>
                     <label for="dayVacation12" hidden>Vacation Day 12</label>
-                    <input type="date" name="dayVacation[]" class="form-control" id="dayVacation12" hidden>
+                    <input type="date" name="dayVacation12" class="form-control" id="dayVacation12" value="" hidden>
                 </div>
                 <button type="button" id="addDayButton" class="btn btn-secondary" onclick="addVacationDay()">Add Vacation Day</button>
+                <br>
+                <br>
+                <div id="evaluationDates" class="form-group">
+                    <p>
+                        Evaluations take the day and the 3 following it, and mark the end of the period.
+                    </p>
+                    <label for="dayEvaluation1">Evaluation Day 1st Period</label>
+                    <input type="date" name="dayEvaluation1" class="form-control" id="dayEvaluation1" value="">
+                    <label for="dayEvaluation2">Evaluation Day 2nd Period</label>
+                    <input type="date" name="dayEvaluation2" class="form-control" id="dayEvaluation2" value="">
+                    <label for="dayEvaluation3">Evaluation Day 3rd Period</label>
+                    <input type="date" name="dayEvaluation3" class="form-control" id="dayEvaluation3" value="">
+                    <label for="dayEvaluation4">Evaluation Day Extraordinary</label>
+                    <input type="date" name="dayEvaluation4" class="form-control" id="dayEvaluation4" value="">
+                </div>
                 <button type="reset" class="btn btn-danger" onclick="hideAllExtraDays()">Reset</button>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
