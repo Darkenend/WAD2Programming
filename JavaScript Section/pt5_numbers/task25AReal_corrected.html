@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>TASK 25</h2>
+<p id="demo"></p>
+<p id="demo2"></p>
+<script>
+    let number = [], lastone = [];
+    for (let i = 0; i < 3; i++) {
+        number[i] = parseInt(prompt("Insert the " + (i + 1) + " number."));
+        while (isNaN(number[i])) {
+            number[i] = parseInt(prompt("ERROR: NOT A NUMBER. Insert the " + (i + 1) + " number."));
+        }
+        while (number[i] < 0) {
+            number[i] = parseInt(prompt("ERROR: NEGATIVE NUMBER. Insert the " + (i + 1) + " number."));
+        }
+    }
+    for (let i = 0; i < 3; i++) {
+        lastone[i] = number[i].toString().split('').pop();
+    }
+
+if(lastone[0] === lastone[1] && lastone[1] === lastone[2]){
+    document.write("the last digit of the 3 numbers are the same");
+} else {
+    document.write("the last digit of the 3 numbers are not the same");
+}
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
