@@ -9,8 +9,6 @@ $endVacation = [];
 $dayVacation = [];
 $dayEvaluation = [];
 
-echo $_POST['dayEvaluation4'] . "<br><br><br><br><br>";
-
 // Block for variable assignation
 if (isset($_POST['calendarName'])) {
     $calendarName = $_POST['calendarName'];
@@ -18,12 +16,20 @@ if (isset($_POST['calendarName'])) {
     $calendarName = "Default Calendar Name";
 }
 if (isset($_POST['startDate'])) {
-    $startDate = new DateTime($_POST['startDate']);
+    try {
+        $startDate = new DateTime($_POST['startDate']);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 } else {
     $startDate = new DateTime('2019-09-09');
 }
 if (isset($_POST['endDate'])) {
-    $endDate = new DateTime($_POST['endDate']);
+    try {
+        $endDate = new DateTime($_POST['endDate']);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 } else {
     $endDate = new DateTime('2020-06-16');
 }
@@ -32,27 +38,43 @@ if (isset($_POST['endDate'])) {
 for ($i = 0; $i < 3; $i++) {
     $string = 'Vacation' . ($i + 1);
     if (isset($_POST['start' . $string]) && $_POST['start' . $string] != "") {
-        $startVacation[$i] = new DateTime($_POST['start' . $string]);
+        try {
+            $startVacation[$i] = new DateTime($_POST['start' . $string]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
     if (isset($_POST['end' . $string]) && $_POST['end' . $string] != "") {
-        $endVacation[$i] = new DateTime($_POST['end' . $string]);
+        try {
+            $endVacation[$i] = new DateTime($_POST['end' . $string]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
 for ($i = 0; $i < 12; $i++) {
     $str = 'dayVacation' . ($i + 1);
     if (isset($_POST[$str]) && $_POST[$str] != "") {
-        $dayVacation[$i] = new DateTime($_POST[$str]);
+        try {
+            $dayVacation[$i] = new DateTime($_POST[$str]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
 for ($i = 0; $i < 4; $i++) {
     $str = 'dayEvaluation' . ($i + 1);
     if (isset($_POST[$str]) && $_POST[$str] != "") {
-        $dayEvaluation[$i] = new DateTime($_POST[$str]);
+        try {
+            $dayEvaluation[$i] = new DateTime($_POST[$str]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
 
 $myCalendar = new Base($startDate, $endDate, $startVacation, $endVacation, $dayVacation, $dayEvaluation);
-$monthDelta = intval(date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format("m"));
+$monthDelta = date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format("m");
 echo $monthDelta."<br>";
 
 // Start of the web page, setting a Bootstrap-based layout
