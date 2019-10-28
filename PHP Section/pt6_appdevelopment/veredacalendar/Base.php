@@ -1,6 +1,7 @@
 <?php
 
-abstract class Base {
+class Base
+{
     /**
      * @var \DateTime The date when the calendar starts
      */
@@ -18,11 +19,11 @@ abstract class Base {
      */
     private $vacationPeriodsEnd;
     /**
-     * @var \DateTime Array of days which are festive in the calendar
+     * @var array Array of days which are festive in the calendar
      */
     private $festiveDays;
     /**
-     * @var \DateTime Array of days when there's the evaluations
+     * @var array Array of days when there's the evaluations
      */
     private $evaluationDays = [];
     /**
@@ -35,7 +36,29 @@ abstract class Base {
      */
     private $periodLength = [1, 1, 1, 1];
 
-    function periodLengthCrafting() {
+    /**
+     * Base constructor.
+     * @param DateTime $startDate Date of start of the calendar.
+     * @param DateTime $endDate Date of the end of the calendar.
+     * @param array $vacationPeriodsStart Array with starts of Vacation periods.
+     * @param array $vacationPeriodsEnd Array with ends of Vacation periods.
+     * @param array $festiveDays Array with individual days of vacations
+     * @param array $evaluationDays Array with evaluation days
+     */
+    public function __construct(DateTime $startDate, DateTime $endDate, array $vacationPeriodsStart, array $vacationPeriodsEnd, array $festiveDays, array $evaluationDays)
+    {
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
+        $this->vacationPeriodsStart = $vacationPeriodsStart;
+        $this->vacationPeriodsEnd = $vacationPeriodsEnd;
+        $this->festiveDays = $festiveDays;
+        $this->evaluationDays = $evaluationDays;
+        $this->setCourseLength();
+        $this->periodLengthCrafting();
+    }
+
+    function periodLengthCrafting()
+    {
         $xd = [];
         $xd[0] = date_diff($this->startDate, $this->evaluationDays[0], true);
         $xd[1] = date_diff($this->evaluationDays[0], $this->evaluationDays[1], true);
@@ -109,33 +132,33 @@ abstract class Base {
     }
 
     /**
-     * @return DateTime
+     * @return array
      */
-    public function getFestiveDays(): DateTime
+    public function getFestiveDays(): array
     {
         return $this->festiveDays;
     }
 
     /**
-     * @param DateTime $festiveDays
+     * @param array $festiveDays
      */
-    public function setFestiveDays(DateTime $festiveDays): void
+    public function setFestiveDays(array $festiveDays): void
     {
         $this->festiveDays = $festiveDays;
     }
 
     /**
-     * @return DateTime
+     * @return array
      */
-    public function getEvaluationDays(): DateTime
+    public function getEvaluationDays(): array
     {
         return $this->evaluationDays;
     }
 
     /**
-     * @param DateTime $evaluationDays
+     * @param array $evaluationDays
      */
-    public function setEvaluationDays(DateTime $evaluationDays): void
+    public function setEvaluationDays(array $evaluationDays): void
     {
         $this->evaluationDays = $evaluationDays;
     }
@@ -148,11 +171,9 @@ abstract class Base {
         return $this->courseLength;
     }
 
-    /**
-     * @param int $courseLength
-     */
-    public function setCourseLength(int $courseLength): void
+    public function setCourseLength(): void
     {
+        $courseLength = intval(date_diff($this->startDate, $this->endDate, true)->format("%a"));
         $this->courseLength = $courseLength;
     }
 
