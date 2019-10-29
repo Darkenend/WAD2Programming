@@ -24,14 +24,17 @@ switch (keyCode) {
     case 1:
         // Quicksort
         sortedArray = quickSort(myArray, 0, myArray.length - 1);
+        sortedArray = sortedArray.reverse();
         break;
     case 2:
         // Mergesort
         sortedArray = mergeSort(myArray);
+        sortedArray = sortedArray.reverse();
         break;
     case 3:
         // Bubble
         sortedArray = bubbleSort(myArray);
+        sortedArray = sortedArray.reverse();
         break;
     case 4:
         // System Sort
@@ -39,17 +42,19 @@ switch (keyCode) {
         sortedArray2 = sortedArray.reverse();
         break;
 }
-alert("The sorted numbers are:\n" +
-    sortedArray[0] + ", " +
-    sortedArray[1] + ", " +
-    sortedArray[2] + ", " +
-    sortedArray[3] + ", " +
-    sortedArray[4] + ", " +
-    sortedArray[5] + ", " +
-    sortedArray[6] + ", " +
-    sortedArray[7] + ", " +
-    sortedArray[8] + ", " +
-    sortedArray[9]);
+if (keyCode >= 1 && keyCode <= 4) {
+    alert("The sorted numbers are:\n" +
+        sortedArray[0] + ", " +
+        sortedArray[1] + ", " +
+        sortedArray[2] + ", " +
+        sortedArray[3] + ", " +
+        sortedArray[4] + ", " +
+        sortedArray[5] + ", " +
+        sortedArray[6] + ", " +
+        sortedArray[7] + ", " +
+        sortedArray[8] + ", " +
+        sortedArray[9]);
+}
 if (keyCode === 4) {
     alert("The sorted numbers inverted are:\n" +
         sortedArray2[0] + ", " +
