@@ -23,22 +23,22 @@ switch (keyCode) {
         break;
     case 1:
         // Quicksort
-        sortedArray = quickSort(myArray, 0, myArray.length - 1);
+        sortedArray = quickSort(daArray, 0, myArray.length - 1);
         sortedArray = sortedArray.reverse();
         break;
     case 2:
         // Mergesort
-        sortedArray = mergeSort(myArray);
+        sortedArray = mergeSort(daArray);
         sortedArray = sortedArray.reverse();
         break;
     case 3:
         // Bubble
-        sortedArray = bubbleSort(myArray);
+        sortedArray = bubbleSort(daArray);
         sortedArray = sortedArray.reverse();
         break;
     case 4:
         // System Sort
-        sortedArray = myArray.sort();
+        sortedArray = daArray.sort();
         sortedArray2 = sortedArray.reverse();
         break;
 }
