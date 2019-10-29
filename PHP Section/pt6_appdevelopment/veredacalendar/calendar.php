@@ -74,8 +74,12 @@ for ($i = 0; $i < 4; $i++) {
 }
 
 $myCalendar = new Base($startDate, $endDate, $startVacation, $endVacation, $dayVacation, $dayEvaluation);
-$monthDelta = intval(date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format('%m'))+1;
-$tempDate = new DateTime($myCalendar->getStartDate()->format('Y-m').'-01');
+$monthDelta = intval(date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format('%m')) + 1;
+try {
+    $tempDate = new DateTime($myCalendar->getStartDate()->format('Y-m') . '-01');
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 
 // Start of the web page, setting a Bootstrap-based layout
 require "views/html_top.views.php";
@@ -87,14 +91,14 @@ for ($i = 0; $i < $monthDelta; $i++) {
     // setting up the div
     if ($i == 0) {
         echo "<div class='col-4 offset-1>";
-    } else if ($i%3 == 0) {
+    } else if ($i % 3 == 0) {
         echo "<div class='col-4 offset-2'>";
     } else {
         echo "<div class='col-4'>";
     }
     echo "<table class='table table-bordered'>";
     echo "<thead class='thead-dark'>";
-    echo "<tr><th colspan='7'>".$tempDate->format('F-Y')."</th></tr>";
+    echo "<tr><th colspan='7'>" . $tempDate->format('F-Y') . "</th></tr>";
 
     //move temp to next day
     $tempDate = $tempDate->add(new DateInterval('P1M'));
