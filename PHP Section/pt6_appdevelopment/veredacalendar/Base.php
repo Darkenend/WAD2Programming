@@ -57,23 +57,43 @@ class Base
         $this->periodLengthCrafting();
     }
 
+    /**
+     * This function implements the length of periods
+     */
     function periodLengthCrafting()
     {
         $xd = [];
-        $xd[0] = date_diff($this->startDate, $this->evaluationDays[0], true);
-        $xd[1] = date_diff($this->evaluationDays[0], $this->evaluationDays[1], true);
-        $xd[2] = date_diff($this->evaluationDays[1], $this->evaluationDays[2], true);
-        $xd[3] = date_diff($this->evaluationDays[2], $this->evaluationDays[3], true);
+        $xd[0] = intval(date_diff($this->startDate, $this->evaluationDays[0], true)->format('%a'));
+        $xd[1] = intval(date_diff($this->evaluationDays[0], $this->evaluationDays[1], true)->format('%a'));
+        $xd[2] = intval(date_diff($this->evaluationDays[1], $this->evaluationDays[2], true)->format('%a'));
+        $xd[3] = intval(date_diff($this->evaluationDays[2], $this->evaluationDays[3], true)->format('%a'));
         $this->setPeriodLength($xd);
     }
 
+    /**
+     * Function that checks if the given day is in a school period
+     * @param DateTime $workDate Given day to check
+     * @return int Period in which it's set
+     */
     function checkPeriod(DateTime $workDate): int {
         $base = $this->getStartDate();
-        $end = new DateTime($base->add(new DateInterval("P".$this->getPeriodLength()[0]."D")));
+        try {
+            $end = new DateTime($base->add(new DateInterval("P" . $this->getPeriodLength()[0] . "D")));
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
         for ($i = 0; $i < sizeof($this->getPeriodLength()); $i++) {
             if ($i != 0) {
-                $base = new DateTime($base->add(new DateInterval("P".$this->getPeriodLength()[$i]."D")));
-                $end = new DateTime($end->add(new DateInterval("P".$this->getPeriodLength()[$i+1]."D")));
+                try {
+                    $base = new DateTime($base->add(new DateInterval("P" . $this->getPeriodLength()[$i] . "D")));
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
+                try {
+                    $end = new DateTime($end->add(new DateInterval("P" . $this->getPeriodLength()[$i + 1] . "D")));
+                } catch (Exception $e) {
+                    $e->getMessage();
+                }
             }
             if ($base <= $workDate && $workDate <= $end) {
                 return $i+1;
@@ -82,12 +102,37 @@ class Base
         return -1;
     }
 
+    /**
+     * Function that checks if the given day, it's a singular vacation day
+     * @param DateTime $workDate Day given to check
+     * @return bool If the day is a vacation day or not
+     */
     function checkVacationDay(DateTime $workDate): bool {
         for ($i = 0; $i < sizeof($this->getFestiveDays()); $i++) {
             if ($this->getFestiveDays()[$i]->format('m-d') == $workDate->format('m-d')) {
                 return true;
             }
         }
+        return false;
+    }
+
+    /**
+     * Function that checks if the given day is part of an evaluation
+     * @param DateTime $workDate Day to be checked
+     * @return bool If it's part of an evaluation period
+     */
+    function checkEvaluationDay(DateTime $workDate): bool {
+        //PLACEHOLDER
+        return false;
+    }
+
+    /**
+     * Function that checks if the given day is part of a vacation period
+     * @param DateTime $workDate Day to be checked
+     * @return bool If it's from a vacation period
+     */
+    function checkVacationPeriod(DateTime $workDate): bool {
+        // PLACEHOLDER
         return false;
     }
 
