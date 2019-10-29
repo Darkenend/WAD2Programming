@@ -23,7 +23,7 @@ switch (keyCode) {
         break;
     case 1:
         // Quicksort
-        sortedArray = quickSort(daArray, 0, myArray.length - 1);
+        sortedArray = quickSort(daArray, 0, daArray.length - 1);
         sortedArray = sortedArray.reverse();
         break;
     case 2:
