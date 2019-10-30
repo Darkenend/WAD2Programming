@@ -100,7 +100,8 @@ for ($i = 0; $i < $monthDelta; $i++) {
     echo "<thead class='thead-dark'>";
     echo "<tr><th colspan='7'>" . $tempDate->format('F-Y') . "</th></tr>";
 
-    //move temp to next day
+
+    //move temp to next
     $tempDate = $tempDate->add(new DateInterval('P1M'));
 }
 for ($i = 0; $i < 3; $i++) {
