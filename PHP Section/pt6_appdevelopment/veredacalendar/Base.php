@@ -122,7 +122,12 @@ class Base
      * @return bool If it's part of an evaluation period
      */
     function checkEvaluationDay(DateTime $workDate): bool {
-        //PLACEHOLDER
+        for ($i = 0; $i < sizeof($this->getEvaluationDays()); $i++) {
+            $endEvaluationDay = $this->getEvaluationDays()[$i]->modify('+3 weekdays');
+            if ($workDate >= $this->getEvaluationDays()[$i] && $workDate <= $endEvaluationDay) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -132,7 +137,11 @@ class Base
      * @return bool If it's from a vacation period
      */
     function checkVacationPeriod(DateTime $workDate): bool {
-        // PLACEHOLDER
+        for ($i = 0; $i < sizeof($this->getVacationPeriodsStart()); $i++) {
+            if ($workDate > $this->getVacationPeriodsStart()[$i] && $workDate < $this->getVacationPeriodsEnd()[$i]) {
+                return true;
+            }
+        }
         return false;
     }
 

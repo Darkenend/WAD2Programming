@@ -106,7 +106,20 @@ for ($m = 0; $m < $monthDelta; $m++) {
                 for ($j = 1; $j < $week_day_num; $j++) {
                     echo "<td></td>";
                 }
-                echo "<td>".($i+1)."</td>";
+                $period_check = "";
+                $vacation_check = "";
+                $evaluation_check = "";
+                if ($week_day_num <= 5) {
+                    $period_check = $myCalendar->checkPeriod($tempDateDay);
+                    if ($myCalendar->checkVacationDay($tempDateDay) || $myCalendar->checkVacationPeriod($tempDateDay)) {
+                        $vacation_check = "table-danger ";
+                    }
+                    if ($myCalendar->checkEvaluationDay($tempDateDay)) {
+                        $evaluation_check = "table-dark ";
+                    }
+                }
+                echo "<td class='".$period_check.$vacation_check.$evaluation_check."'>";
+                echo ($i+1)."</td>";
                 // If the day is a sunday, it will jump row afterwards
                 if ($week_day_num == 7) {
                     echo "</tr><tr>";
@@ -128,3 +141,27 @@ for ($i = 0; $i < 3; $i++) {
     echo "</div>";
 }
 require "views/html_bot.views.php";
+
+/**
+ * @param int $num Number of the period which this date it's in
+ * @return string Class to add to the table cell
+ */
+function classAssignerPeriod(int $num): string {
+    switch ($num) {
+        default:
+            return "";
+            break;
+        case 1:
+            return "table-primary ";
+            break;
+        case 2:
+            return "table-success ";
+            break;
+        case 3:
+            return "table-warning ";
+            break;
+        case 4:
+            return "table-info ";
+            break;
+    }
+}
