@@ -76,7 +76,7 @@ for ($i = 0; $i < 4; $i++) {
 $myCalendar = new Base($startDate, $endDate, $startVacation, $endVacation, $dayVacation, $dayEvaluation);
 $monthDelta = intval(date_diff($myCalendar->getStartDate(), $myCalendar->getEndDate(), true)->format('%m')) + 1;
 try {
-    $tempDate = new DateTime($myCalendar->getStartDate()->format('Y-m') . '-01');
+    $tempDate = new DateTime($myCalendar->getStartDate()->format('Y-m').'-1');
 } catch (Exception $e) {
     echo $e->getMessage();
 }
@@ -87,20 +87,40 @@ echo "<div class=\"container-fluid pt-3\">";
 echo "<div class=\"row\">";
 echo "<div class=\"col-4 offset-4\">";
 echo "<h1 class='text-center'>" . $calendarName . "</h1><br>";
-for ($i = 0; $i < $monthDelta; $i++) {
+for ($m = 0; $m < $monthDelta; $m++) {
+    $days_in_month = cal_days_in_month(CAL_GREGORIAN, intval($tempDate->format('m')), intval($tempDate->format('Y')));
     // setting up the div
-    if ($i == 0) {
-        echo "<div class='col-4 offset-1>";
-    } else if ($i % 3 == 0) {
-        echo "<div class='col-4 offset-2'>";
-    } else {
-        echo "<div class='col-4'>";
-    }
+    echo "<div class='col-4'>";
     echo "<table class='table table-bordered'>";
     echo "<thead class='thead-dark'>";
     echo "<tr><th colspan='7'>" . $tempDate->format('F-Y') . "</th></tr>";
-
-
+    echo "<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>";
+    for ($i = 0; $i < 42; $i++) {
+        try {
+            $tempDateDay = new DateTime($tempDate->format('Y-m-') . ($i + 1));
+        } catch (Exception $e) {
+        }
+        if ($i < $days_in_month) {
+            $week_day_num = $tempDateDay->format('N');
+            if ($i === 0) {
+                for ($j = 1; $j < $week_day_num; $j++) {
+                    echo "<td></td>";
+                }
+                echo "<td>".($i+1)."</td>";
+                // If the day is a sunday, it will jump row afterwards
+                if ($week_day_num == 7) {
+                    echo "</tr><tr>";
+                }
+            } else {
+                echo "<td>".($i+1)."</td>";
+                // If the day is a sunday, it will jump row afterwards
+                if ($week_day_num == 7) {
+                    echo "</tr><tr>";
+                }
+            }
+        }
+    }
+    echo "</div><br>";
     //move temp to next
     $tempDate = $tempDate->add(new DateInterval('P1M'));
 }
