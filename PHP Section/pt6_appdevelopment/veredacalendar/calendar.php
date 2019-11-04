@@ -87,6 +87,8 @@ echo "<div class=\"container-fluid pt-3\">";
 echo "<div class=\"row\">";
 echo "<div class=\"col-4 offset-4\">";
 echo "<h1 class='text-center'>" . $calendarName . "</h1><br>";
+echo "</div></div>";
+echo "<div class=\"row\">";
 for ($m = 0; $m < $monthDelta; $m++) {
     $days_in_month = cal_days_in_month(CAL_GREGORIAN, intval($tempDate->format('m')), intval($tempDate->format('Y')));
     // setting up the div
@@ -95,6 +97,7 @@ for ($m = 0; $m < $monthDelta; $m++) {
     echo "<thead class='thead-dark'>";
     echo "<tr><th colspan='7'>" . $tempDate->format('F-Y') . "</th></tr>";
     echo "<tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>";
+    echo "</thead>";
     for ($i = 0; $i < 42; $i++) {
         try {
             $tempDateDay = new DateTime($tempDate->format('Y-m-') . ($i + 1));
