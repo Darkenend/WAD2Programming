@@ -67,7 +67,7 @@ class Base
         $xd[1] = intval(date_diff($this->evaluationDays[0], $this->evaluationDays[1], true)->format('%a'));
         $xd[2] = intval(date_diff($this->evaluationDays[1], $this->evaluationDays[2], true)->format('%a'));
         $xd[3] = intval(date_diff($this->evaluationDays[2], $this->evaluationDays[3], true)->format('%a'));
-        $this->setPeriodLength($xd);
+        self::setPeriodLength($xd);
     }
 
     /**
@@ -75,28 +75,32 @@ class Base
      * @param DateTime $workDate Given day to check
      * @return int Period in which it's set
      */
-    function checkPeriod(DateTime $workDate): int {
-        $base = $this->getStartDate();
+    function checkPeriod(DateTime $workDate): int
+    {
+        $base = self::getStartDate();
+        $x1 = self::getPeriodLength()[0];
         try {
-            $end = new DateTime($base->add(new DateInterval("P" . $this->getPeriodLength()[0] . "D")));
+            $end = new DateTime($base->add(new DateInterval("P" . $x1 . "D")));
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        for ($i = 0; $i < sizeof($this->getPeriodLength()); $i++) {
+        for ($i = 0; $i < sizeof(self::getPeriodLength()); $i++) {
+            $x1 = self::getPeriodLength()[$i];
+            $x2 = self::getPeriodLength()[$i + 1];
             if ($i != 0) {
                 try {
-                    $base = new DateTime($base->add(new DateInterval("P" . $this->getPeriodLength()[$i] . "D")));
+                    $base = new DateTime($base->add(new DateInterval("P" . $x1 . "D")));
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
                 try {
-                    $end = new DateTime($end->add(new DateInterval("P" . $this->getPeriodLength()[$i + 1] . "D")));
+                    $end = new DateTime($end->add(new DateInterval("P" . $x2 . "D")));
                 } catch (Exception $e) {
                     $e->getMessage();
                 }
             }
             if ($base <= $workDate && $workDate <= $end) {
-                return $i+1;
+                return $i + 1;
             }
         }
         return -1;
@@ -107,9 +111,10 @@ class Base
      * @param DateTime $workDate Day given to check
      * @return bool If the day is a vacation day or not
      */
-    function checkVacationDay(DateTime $workDate): bool {
-        for ($i = 0; $i < sizeof($this->getFestiveDays()); $i++) {
-            if ($this->getFestiveDays()[$i]->format('m-d') == $workDate->format('m-d')) {
+    function checkVacationDay(DateTime $workDate): bool
+    {
+        for ($i = 0; $i < sizeof(self::getFestiveDays()); $i++) {
+            if (self::getFestiveDays()[$i]->format('m-d') == $workDate->format('m-d')) {
                 return true;
             }
         }
@@ -121,10 +126,11 @@ class Base
      * @param DateTime $workDate Day to be checked
      * @return bool If it's part of an evaluation period
      */
-    function checkEvaluationDay(DateTime $workDate): bool {
-        for ($i = 0; $i < sizeof($this->getEvaluationDays()); $i++) {
-            $endEvaluationDay = $this->getEvaluationDays()[$i]->modify('+3 weekdays');
-            if ($workDate >= $this->getEvaluationDays()[$i] && $workDate <= $endEvaluationDay) {
+    function checkEvaluationDay(DateTime $workDate): bool
+    {
+        for ($i = 0; $i < sizeof(self::getEvaluationDays()); $i++) {
+            $endEvaluationDay = self::getEvaluationDays()[$i]->modify('+3 weekdays');
+            if ($workDate >= self::getEvaluationDays()[$i] && $workDate <= $endEvaluationDay) {
                 return true;
             }
         }
@@ -136,9 +142,10 @@ class Base
      * @param DateTime $workDate Day to be checked
      * @return bool If it's from a vacation period
      */
-    function checkVacationPeriod(DateTime $workDate): bool {
-        for ($i = 0; $i < sizeof($this->getVacationPeriodsStart()); $i++) {
-            if ($workDate > $this->getVacationPeriodsStart()[$i] && $workDate < $this->getVacationPeriodsEnd()[$i]) {
+    function checkVacationPeriod(DateTime $workDate): bool
+    {
+        for ($i = 0; $i < sizeof(self::getVacationPeriodsStart()); $i++) {
+            if ($workDate > self::getVacationPeriodsStart()[$i] && $workDate < self::getVacationPeriodsEnd()[$i]) {
                 return true;
             }
         }
