@@ -1,0 +1,3 @@
+create user 'admin.pdo_clientes'@'localhost' identified by '123_admin.pdo_clientes_321';
+grant all privileges on pd_clientes.* to 'admin.pdo_clientes'@'localhost';
+flush privileges;

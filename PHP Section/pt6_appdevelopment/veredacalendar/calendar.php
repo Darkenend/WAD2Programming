@@ -113,7 +113,7 @@ for ($m = 0; $m < $monthDelta; $m++) {
                 $vacation_check = "";
                 $evaluation_check = "";
                 if ($week_day_num <= 5) {
-                    $period_check = $myCalendar->checkPeriod($tempDateDay);
+                    // $period_check = $myCalendar->checkPeriod($tempDateDay);
                     if ($myCalendar->checkVacationDay($tempDateDay) || $myCalendar->checkVacationPeriod($tempDateDay)) {
                         $vacation_check = "table-danger ";
                     }

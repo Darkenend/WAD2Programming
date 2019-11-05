@@ -1,0 +1,5 @@
+//crear usuario
+create user 'admin.empresa'@'localhost' identified by '123_admin.empresa_321';
+//hacerlo administrador de la BD empresa
+grant all privileges on empresa.* to 'admin.empresa'@'localhost';
+flush privileges;

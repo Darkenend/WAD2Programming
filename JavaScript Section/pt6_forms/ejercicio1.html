@@ -8,25 +8,67 @@
 <body>
 <form method="post">
     <label for="name">Name:</label>
-    <input type="text" name="name" id="name"><br><br>
+    <input type="text" name="name" id="name" onblur="checkName()"><br>
+    <span id="name_error" style="color: red" hidden>Error: No es una palabra valida</span>
+    <br>
+    <br>
     <label for="lastname1">Last Name 1:</label>
-    <input type="text" name="lastname1" id="lastname1"><br><br>
+    <input type="text" name="lastname1" id="lastname1" onblur="checkLastName1()"><br>
+    <span id="ln1_error" style="color: red" hidden>Error: No es una palabra valida</span>
+    <br>
+    <br>
     <label for="lastname2">Last Name 2:</label>
-    <input type="text" name="lastname2" id="lastname2"><br><br>
+    <input type="text" name="lastname2" id="lastname2" onblur="checkLastName2()"><br>
+    <span id="ln2_error" style="color: red" hidden>Error: No es una palabra valida</span>
+    <br>
+    <br>
     <label for="address">Street Name:</label>
-    <input type="text" name="address" id="address"><br><br>
+    <input type="text" name="address" id="address" onblur="checkStreetName()"><br>
+    <span id="add_error" style="color: red" hidden>Error: No es una palabra valida</span>
+    <br>
+    <br>
     <label for="stNumber">Number:</label>
-    <input type="text" name="stNumber" id="stNumber"><br><br>
+    <input type="text" name="stNumber" id="stNumber" onblur="checkStreetNumber()"><br>
+    <span id="stNu_error" style="color: red" hidden>Error: No es un numero valido</span>
+    <br>
+    <br>
     <label for="door">Door:</label>
-    <input type="text" name="door" id="door"><br><br>
+    <input type="text" name="door" id="door" onblur="checkDoor()"><br>
+    <span id="door_error" style="color: red" hidden>Error: No es una palabra valida</span>
+    <br>
+    <br>
     <label for="postcode">Postal Code:</label>
-    <input type="text" name="postcode" id="postcode"><br><br>
+    <input type="text" name="postcode" id="postcode" onblur="checkPostCode()"><br>
+    <span id="poco_error" style="color: red" hidden>Error: No es un numero valido</span>
+    <br>
+    <br>
     <label for="homephone">Phone Number:</label>
-    <input type="text" name="homephone" id="homephone"><br><br>
+    <input type="text" name="homephone" id="homephone" onblur="checkHomePhone()"><br>
+    <span id="hpho_error" style="color: red" hidden>
+        Error: No es un numero de telefono valido
+        <br>
+        Formatos Validos: +34912345678 / 0034912345678 / 912345678
+    </span>
+    <br>
+    <br>
     <label for="cellphone">Cell Phone:</label>
-    <input type="text" name="cellphone" id="cellphone"><br><br>
+    <input type="text" name="cellphone" id="cellphone" onblur="checkCellPhone()"><br>
+    <span id="cpho_error" style="color: red" hidden>
+        Error: No es un numero de telefono valido
+        <br>
+        Formatos Validos: +34612345789 / 0034612345789 / 612345789
+    </span>
+    <br>
+    <br>
     <label for="email">Email:</label>
-    <input type="text" name="email" id="email"><br><br>
+    <input type="text" name="email" id="email" onblur="checkEmail()"><br>
+    <span id="email_error" style="color: red" hidden>
+        Error: No es una direccion de correo valida
+        <br>
+        Formato correcto: nombre@dominio.com
+    </span>
+    <br>
+    <br>
     <label for="purpose">Purpose:</label>
     <input type="text" name="purpose" id="purpose"><br><br>
     Gender:<br>
@@ -35,9 +77,7 @@
     <label for="gender2">Female</label>
     <input type="radio" name="gender" id="gender2" value="female"><br>
     <label for="gender3">Non Binary</label>
-    <input type="radio" name="gender" id="gender3" value="non-binary"><br>
-    <br><br>
-    <button type="button" onclick="fValidate()">Submit</button>
+    <input type="radio" name="gender" id="gender3" value="non-binary">
 </form>
 </body>
 </html>
