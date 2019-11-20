@@ -1,0 +1,9 @@
+.bloc {
+    display: inline-block;
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    background-color: red;
+}
