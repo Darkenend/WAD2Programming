@@ -23,14 +23,14 @@ require 'cabecera.php';
 <h1>Lista de categorías</h1>
 <!-- lista de vínculos con la forma productos.php?categoria=1 -->
 <?php
-$categorias = cargarCategorias();
-if ($categorias === FALSE) {
+$filas = cargarCategorias();
+if ($filas === FALSE) {
     echo '<p class="error">Error al conectar con la base de datos</p>';
 } else {
     echo '<ul>';
-    foreach ($categorias as $cat) {
-        $url = 'productos.php?categoria=' . $cat["codCat"];
-        echo '<li><a href="' . $url . '">' . $cat['nombre'] . '</a></li>';
+    foreach ($filas as $fila) {
+        $url = 'productos.php?categoria=' . $fila["codCat"];
+        echo '<li><a href="' . $url . '">' . $fila['nombre'] . '</a></li>';
     }
     echo '</ul>';
 }

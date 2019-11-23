@@ -1,12 +1,12 @@
 <?php
 /**
- * Muestra una tabla con todos los elementos de una categoría
- * y permite añadirlos al carrito. Cada fila tiene:
- *  - Los datos de un producto(Nombre, Descripción, Peso, Stock).
- *  - El campo del código del producto está oculto. (CodProd)
- *  - Un formulario al final para añadir una o más unidades de ese producto al carrito
- * Al hacer click a un botón comprar se llama a anadir.php
- */
+* Muestra una tabla con todos los elementos de una categoría
+* y permite añadirlos al carrito. Cada fila tiene:
+*  - Los datos de un producto(Nombre, Descripción, Peso, Stock).
+*  - El campo del código del producto está oculto. (CodProd)
+*  - Un formulario al final para añadir una o más unidades de ese producto al carrito
+* Al hacer click a un botón comprar se llama a anadir.php
+*/
 
 require 'sesiones.php';
 require_once 'bd.php';
@@ -16,7 +16,7 @@ comprobarSesion();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tabla de productos por categoría</title>
+<title>Tabla de productos por categoría</title>
 </head>
 
 <body>
@@ -46,22 +46,26 @@ foreach ($productos as $producto) {
     $des = $producto["Descripcion"];
     $peso = $producto["Peso"];
     $stock = $producto["Stock"];
-    echo '<tr>';
-    echo '<td>' . $nom . '</td>';
-    echo '<td>' . $des . '</td>';
-    echo '<td>' . $peso . '</td>';
-    echo '<td>' . $stock. '</td>';
-    echo '<td>';
-    echo '<form action = "anadir.php" method="POST">';
-    echo '<input name="unidades" type="number" min="1" value="1">';
-    echo '<input type="submit" value="comprar">';
-    //Código oculto para que no lo vea el usuario. IMPORTANTE -> dentro del form
-    echo '<input name="cod" type="hidden" value="' . $cod . '">';
-    echo '</form>';
-    echo '</td>';
-    echo '</tr>';
+    if ($stock >= 1) {
+        echo '<tr>';
+        echo '<td>' . $nom . '</td>';
+        echo '<td>' . $des . '</td>';
+        echo '<td>' . $peso . '</td>';
+        echo '<td>' . $stock. '</td>';
+        echo '<td>';
+        echo '<form action = "anadir.php" method="POST">';
+        echo '<input name="unidades" type="number" min="1" value="1">';
+        echo '<input type="submit" value="comprar">';
+        //Código oculto para que no lo vea el usuario. IMPORTANTE -> dentro del form
+        echo '<input name="cod" type="hidden" value="' . $cod . '">';
+        echo '</form>';
+        echo '</td>';
+        echo '</tr>';
+    }
 }
 echo '</table>';
+echo '<br>';
+echo '<p><small>En caso de pedir mas productos de los que hay en stock, solo se añadiran los productos en stock</small></p>';
 ?>
 
 </body>

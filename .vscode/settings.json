@@ -1,0 +1,22 @@
+{
+    "deploy.reloaded": {
+        "packages": [
+            {
+                "name": "Web App Development",
+                "description": "My Web App Development Stuff",
+                "files": [
+                    "*.*"
+                ],
+                "deployOnSave": "XAMPPhtdocs"
+            }
+        ],
+        "targets": [
+            {
+                "type": "local",
+                "name": "XAMPPhtdocs",
+                "description": "XAMPP's htdocs folder where everything is",
+                "dir": "C:/xampp/htdocs/WAD2Programming",
+            }
+        ]
+    }
+}
