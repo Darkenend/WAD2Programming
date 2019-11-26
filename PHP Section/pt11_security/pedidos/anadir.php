@@ -6,14 +6,12 @@
 // TODO: Check cart can't go over stock in DB
 
 require_once 'sesiones.php';
-require_once 'bd.php';
 
 //Comprueba que el usuario haya abierto sesión o redirige
 comprobarSesion();
 
 $cod = $_POST['cod'];
-$max_stock = getCurrentStock($cod);
-$max_stock = (int) $max_stock['Stock'];
+$max_stock = (int) $_POST['stock'];
 if ($unidades > $max_stock) {
     $unidades = $max_stock;
 } else {
