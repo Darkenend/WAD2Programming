@@ -8,7 +8,7 @@
  * 	- Mostrar mensajes de confirmación o error.
  */
 
-require '../correo/correo.php';
+require 'mail.php';
 require 'sesiones.php';
 require_once 'bd.php';
 //comprueba que el usuario haya abierto sesión o redirige
