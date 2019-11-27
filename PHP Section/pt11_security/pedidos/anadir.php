@@ -12,10 +12,10 @@ comprobarSesion();
 
 $cod = $_POST['cod'];
 $max_stock = (int) $_POST['stock'];
+$unidades = (int)$_POST['unidades'];
+$location = "productos.php?categoria=".$_POST['cat'];
 if ($unidades > $max_stock) {
     $unidades = $max_stock;
-} else {
-    $unidades = (int)$_POST['unidades'];
 }
 
 
@@ -27,4 +27,4 @@ if (isset($_SESSION['carrito'][$cod])) {
 }
 
 // Mostramos el carrito
-header('Location: carrito.php');
+header('Location: '.$location);

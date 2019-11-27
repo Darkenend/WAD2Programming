@@ -59,6 +59,7 @@ foreach ($productos as $producto) {
         //Código oculto para que no lo vea el usuario. IMPORTANTE -> dentro del form
         echo '<input name="cod" type="hidden" value="' . $cod . '">';
         echo '<input name="stock" type="hidden" value="'.$stock.'">';
+        echo '<input name="cat" type="hidden" value="'.$_GET['categoria'].'">';
         echo '</form>';
         echo '</td>';
         echo '</tr>';

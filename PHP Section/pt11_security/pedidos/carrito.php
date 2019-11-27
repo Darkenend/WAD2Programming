@@ -47,7 +47,7 @@ foreach ($productos as $producto) {
     echo '<td>' . $peso . '</td>';
     echo '<td>' . $unidades . '</td>';
     echo '<td><form action = "eliminar.php" method="POST">';
-    echo '<input name="unidades" type="number" min="1" value="1">';
+    echo '<input name="unidades" type="number" min="1" max="'.$unidades.'" value="1">';
     echo '<input type="submit" value="eliminar">';
     echo '<input name="cod" type="hidden" value="' . $cod . '">'; //oculto. Importante que esté en el formulario
     echo '</form></td>';
