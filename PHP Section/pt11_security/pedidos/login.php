@@ -49,7 +49,7 @@ if (isset($err) and $err = TRUE) {
     echo '<div class="alert alert-danger" role="alert">Revise usuario y contraseña</div>';
 }
 ?>
-<fieldset>
+<fieldset class="mt-3">
 <legend>Login</legend>
 <form action="<?php
 echo htmlspecialchars($_SERVER['PHP_SELF']);
