@@ -25,7 +25,7 @@ comprobarSesion();
 </head>
 
 <body>
-
+<div class="container-fluid">
 <?php
 require 'cabecera.php';
 
@@ -38,12 +38,14 @@ if ($cat === FALSE or $productos === FALSE) {
     echo '<p class = "error">Error al conectar con la base de datos</p>';
     exit;
 }
-echo '<h1>' . $cat["nombre"] . '</h1>';
-echo '<p>' . $cat["descripcion"] . '</p>';
-echo '<table>';
+echo '<h1 class="text-center">' . $cat["nombre"] . '</h1>';
+echo '<p class="text-center">' . $cat["descripcion"] . '</p>';
+echo '<table class="table table-striped">';
+echo '<thead class="thead-dark">';
 echo '<tr>';
-echo '<th>Nombre</th><th>Descripción</th><th>Peso</th><th>Stock</th><th>Comprar</th>';
+echo '<th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Peso</th><th scope="col">Unidades</th><th scope="col">Eliminar</th>';
 echo '</tr>';
+echo '</thead><tbody>';
 foreach ($productos as $producto) {
     //var_dump($producto); echo '<br>'; //debug
     $cod = $producto["CodProd"];
@@ -70,10 +72,10 @@ foreach ($productos as $producto) {
         echo '</tr>';
     }
 }
-echo '</table>';
+echo '</tbody></table>';
 echo '<br>';
 echo '<p><small>En caso de pedir mas productos de los que hay en stock, solo se añadiran los productos en stock</small></p>';
 ?>
-
+</div>
 </body>
 </html>

@@ -24,20 +24,22 @@ comprobarSesion();
 <?php
 require 'cabecera.php';
 ?>
-<h1>Lista de categorías</h1>
+<div class="container-fluid">
+<h1 class="text-center">Lista de categorías</h1>
 <!-- lista de vínculos con la forma productos.php?categoria=1 -->
+<div class="list-group">
 <?php
 $filas = cargarCategorias();
 if ($filas === FALSE) {
-    echo '<p class="error">Error al conectar con la base de datos</p>';
+    echo '<div class="alert alert-danger" role="alert">Error al conectar con la base de datos</div>';
 } else {
-    echo '<ul>';
     foreach ($filas as $fila) {
         $url = 'productos.php?categoria=' . $fila["codCat"];
-        echo '<li><a href="' . $url . '">' . $fila['nombre'] . '</a></li>';
+        echo '<a href="' . $url . '" class="list-group-item list-group-item-action">' . $fila['nombre'] . '</a></li>';
     }
-    echo '</ul>';
 }
 ?>
+</div>
+</div>
 </body>
 </html>

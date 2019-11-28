@@ -17,7 +17,9 @@ setcookie(session_name(), 123, time() - 1000); //eliminar la cookie
     <title>Sesión cerrada</title>
 </head>
 <body>
+<div class="container-fluid">
 <p>La sesión se cerró correctamente, hasta la próxima</p>
 <a href="login.php">Ir a la página de login</a>
+</div>
 </body>
 </html>

@@ -25,7 +25,7 @@ comprobarSesion();
 </head>
 
 <body>
-
+<div class="container-fluid">
 <?php
 require 'cabecera.php';
 // $productos -> array mixto (índice + asociativo) de registros de productos del carrito
@@ -34,11 +34,13 @@ if ($productos === FALSE) {
     echo '<p>No hay productos en el pedido</p>';
     exit;
 }
-echo '<h2>Carrito de la compra</h2>';
-echo '<table>';
+echo '<h2 class="text-center">Carrito de la compra</h2>';
+echo '<table class="table table-striped">';
+echo '<thead class="thead-dark">';
 echo '<tr>';
-echo '<th>Nombre</th><th>Descripción</th><th>Peso</th><th>Unidades</th><th>Eliminar</th>';
+echo '<th scope="col">Nombre</th><th scope="col">Descripción</th><th scope="col">Peso</th><th scope="col">Unidades</th><th scope="col">Eliminar</th>';
 echo '</tr>';
+echo '</thead><tbody>';
 foreach ($productos as $producto) {
     $cod = $producto['CodProd'];
     $nom = $producto['Nombre'];
@@ -57,9 +59,10 @@ foreach ($productos as $producto) {
     echo '</form></td>';
     echo '</tr>';
 }
-echo '</table>';
+echo '</tbody></table>';
 ?>
 <hr>
-<a href="procesarPedido.php">Realizar pedido</a>
+<a href="procesarPedido.php" class="btn btn-outline-success">Realizar pedido</a>
+</div>
 </body>
 </html>

@@ -26,13 +26,13 @@ comprobarSesion();
 </head>
 
 <body>
-
+<div class="container-fluid">
 <?php
 require 'cabecera.php';
 
 // inserta pedido, detalles del pedido y actualiza stocks en la BBDD
 $resul = insertarPedido($_SESSION['carrito'], $_SESSION['usuario']['codRes']);
-
+echo '<p class="text-center">';
 if ($resul === FALSE) {
     echo 'No se ha podido insertar el pedido<br>';
 } else { // Pedido Ok -> $resul es el código del nuevo pedido
@@ -52,6 +52,7 @@ if ($resul === FALSE) {
     $_SESSION['carrito'] = [];
 }
 ?>
-
+</p>
+</div>
 </body>
 </html>

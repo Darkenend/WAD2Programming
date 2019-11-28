@@ -33,33 +33,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-
+<div class="container-fluid">
 <?php
 /**
  * Se le ha enviado aquí desde otra página por
  * no cumplir requisitos de control de acceso (comprobarSesion())
  */
 if (isset($_GET['redirigido'])) {
-    echo '<p>Haga login para continuar</p>';
+    echo '<div class="alert alert-info" role="alert">Haga login para continuar</div>';
 }
 /**
  * Fallo de usuario y/o contraseña
  */
 if (isset($err) and $err = TRUE) {
-    echo '<p>Revise usuario y contraseña</p>';
+    echo '<div class="alert alert-danger" role="alert">Revise usuario y contraseña</div>';
 }
 ?>
-
+<fieldset>
+<legend>Login</legend>
 <form action="<?php
 echo htmlspecialchars($_SERVER['PHP_SELF']);
 ?>" method="POST">
-    <label for="usuario">Usuario</label>
-    <input type="text" id="usuario" name="usuario" value="<?php
-    if (isset($usuario)) echo $usuario;
-    ?>">
-    <label for="clave">Clave</label>
-    <input type="password" id="clave" name="clave">
+    <div class="form-group">
+        <label for="usuario">Usuario</label>
+        <input type="text" class="form-control" aria-describedby="nombreHelp" id="usuario" name="usuario" value="<?php if (isset($usuario)) echo $usuario;?>">
+        <small id="nombreHelp" class="form-text text-muted">Usuario con el que loguearse</small>
+    </div>
+    <div class="form-group">
+        <label for="clave">Clave</label>
+        <input type="password" id="clave" name="clave" class="form-control">
+    </div>
     <input type="submit">
 </form>
+</fieldset>
+</div>
 </body>
 </html>
