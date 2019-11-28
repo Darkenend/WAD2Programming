@@ -38,12 +38,23 @@ function comprobarUsuario($nombre, $clave) {
     dirname(__FILE__) . "/configuracion.xsd");
     try {
         $bd = new PDO($res[0], $res[1], $res[2]);
-        $stmt = $bd->prepare("SELECT `codRes`, `correo` FROM `restaurantes` WHERE `correo` = :nombre and clave = :clave");
+        $stmt = $bd->prepare("SELECT `codRes`, `correo`, `clave` FROM `restaurantes` WHERE `correo` = :nombre");
         $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':clave', $clave, PDO::PARAM_STR);
         $stmt->execute();
-        if ($stmt->rowCount() === 1) return $stmt->fetch();
+        if ($stmt->rowCount() === 1) $row = $stmt->fetch();
         else return FALSE;
+        if (password_verify($clave, $row['clave'])) {
+            if (password_needs_rehash($row['clave'], 14, PASSWORD_DEFAULT)) {
+                $newhash = password_hash($clave, 14, PASSWORD_DEFAULT);
+                $update = $bd->prepare("UPDATE `restaurantes` SET `clave`=:newhash WHERE `correo` = :nombre");
+                $update->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                $update->bindParam(':newhash', $newhash, PDO::PARAM_STR);
+                $update->execute();
+            }
+            return $row;
+        } else {
+            return FALSE;
+        }
     } catch (PDOException $e) {
         echo "Error al comprobar el usuario:<br>".$e->getMessage();
     } finally {
