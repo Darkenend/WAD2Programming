@@ -1,6 +1,6 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-include "vendor/autoload.php";
+include "../../../vendor/autoload.php";
 
 /**
  * Envía correo de confirmación a todas las direcciones que hay en la lista de correos
@@ -11,16 +11,17 @@ include "vendor/autoload.php";
  */
 function enviarCorreoMultiples($listaCorreos, $cuerpo, $asunto = "") {
     $mail = new PHPMailer();
-    $res = leerConfigMail(dirname(__FILE__)."/cfgcorreo.xml",dirname(__FILE__)."/cfgcorreo.xsd");
+    $mailconfig = leerConfigMail(dirname(__FILE__)."/cfgcorreo.xml",dirname(__FILE__)."/cfgcorreo.xsd");
     $mail->IsSMTP();
-    $mail->SMTPDebug = 0; //Cambiar a 1 o 2 para ver errores
+    $mail->SMTPDebug = 2; //Cambiar a 1 o 2 para ver errores
     $mail->SMTPAuth = true;
-    $mail->SMTPSecure = $res[0];
-    $mail->Host = $res[1];
-    $mail->Port = $res[2];
-    $mail->Username = $res[3];
-    $mail->Password = $res[4];
-    $mail->SetFrom($res[5], $res[6]);
+    $mail->CharSet = "UTF-8";
+    $mail->SMTPSecure = $mailconfig[0];
+    $mail->Host = $mailconfig[1];
+    $mail->Port = (int) $mailconfig[2];
+    $mail->Username = $mailconfig[3];
+    $mail->Password = $mailconfig[4];
+    $mail->setFrom('arealg@ieslavereda.es', 'Pedidos de Restaurante');
     $mail->Subject = $asunto;
     $mail->MsgHTML($cuerpo);
     // partir la lista de correos por la coma
@@ -29,7 +30,7 @@ function enviarCorreoMultiples($listaCorreos, $cuerpo, $asunto = "") {
         $mail->AddAddress($correo, $correo); //¿? controlar
     }
     if (!$mail->Send()) {
-        return $mail->ErrorInfo;
+        return var_dump($mailconfig)."".$mail->ErrorInfo;
     } else {
         return TRUE;
     }
@@ -53,7 +54,13 @@ function leerConfigMail($nombre, $esquema) {
     $password = $datos->xpath("//password");
     $email = $datos->xpath("//email");
     $name = $datos->xpath("//name");
-    $result = [$stmp, $host, $port, $username, $password, $email, $name];
+    $result[] = $stmp;
+    $result[] = $host;
+    $result[] = $port;
+    $result[] = $username;
+    $result[] = $password;
+    $result[] = $email;
+    $result[] = $name;
     return $result;
 }
 
@@ -77,6 +84,7 @@ function enviarCorreos($carrito, $pedido, $correo) {
  * @return tabla HTML con los detalles del pedido
  */
 function crearCorreo($carrito, $pedido, $correo) {
+    $pesototal = 0;
     $texto = "<h1>Pedido nº $pedido </h1>";
     $texto .= "<h2>Restaurante: $correo </h2>";
     $texto .= "Detalle del pedido:";
@@ -94,7 +102,9 @@ function crearCorreo($carrito, $pedido, $correo) {
         $texto .= "<tr>";
         $texto .= "<td>$nom</td><td>$des</td><td>$peso</td><td>$unidades</td>";
         $texto .= "</tr>";
+        $pesototal += $peso;
     }
     $texto .= "</table>";
+    $texto .= "<p>El peso total es de $pesototal kg</p>";
     return $texto;
 }

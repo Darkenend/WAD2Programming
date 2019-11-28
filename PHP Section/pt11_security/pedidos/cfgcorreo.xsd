@@ -5,17 +5,9 @@
             <xs:sequence>
                 <xs:element name="stmp" type="xs:string" />
                 <xs:element name="host" type="xs:string" />
-                <xs:element name="port" type="xs:unsignedShort" />
+                <xs:element name="port" type="xs:string" />
                 <xs:element name="username" type="xs:string" />
                 <xs:element name="password" type="xs:string" />
-                <xs:element name="setfrom">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="email" type="xs:string" />
-                            <xs:element name="name" type="xs:string" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

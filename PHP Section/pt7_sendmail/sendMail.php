@@ -1,7 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 
-include "vendor/autoload.php";
+include "../../vendor/autoload.php";
 
 $mail = new PHPMailer();
 $mail->IsSMTP();

@@ -138,12 +138,17 @@ function cargarProductosCategoria($codCat) {
 function cargarProductos($codigosProductos) {
     $res = leerConfig(dirname(__FILE__) . "/configuracion.xml",
     dirname(__FILE__) . "/configuracion.xsd");
-    try{$bd = new PDO($res[0], $res[1], $res[2]);
-        $textoIn = implode(",", $codigosProductos);
-        $stmt = $bd->prepare("SELECT * FROM `productos` WHERE `codProd` in (:texto)");
-        $stmt->bindParam(":texto", $textoIn, PDO::PARAM_STR);
-        $stmt->execute();
-        $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        $bd = new PDO($res[0], $res[1], $res[2]);
+        $resul = [];
+        for ($i = 0; $i < sizeof($codigosProductos); $i++) {
+            $stmt = $bd->prepare("SELECT * FROM `productos` WHERE `codProd` = :codigo");
+            $stmt->bindParam(":codigo", $codigosProductos[$i], PDO::PARAM_STR);
+            $stmt->execute();
+            if ($stmt->rowCount() == 1) {
+                array_push($resul, $stmt->fetch());
+            }
+        }
         if (!$resul) return FALSE;
         else return $resul;
     } catch (PDOException $e) {

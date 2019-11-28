@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuracion>
-    <stmp>"tls"</stmp>
-    <host>"stmp.gmail.com"</host>
+    <stmp>tls</stmp>
+    <host>smtp.gmail.com</host>
     <port>587</port>
-    <username>"arealg@ieslavereda.es"</username>
-    <password>"Twoseven3"</password>
-    <setfrom>
-        <email>"arealg@ieslavereda.es"</email>
-        <name>"Pedidos de Restaurante"</name>
-    </setfrom>
+    <username>arealg@ieslavereda.es</username>
+    <password>Twoseven3</password>
 </configuracion>
