@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Clase que maneja la conexión con la base de datos
+ */
 class ConexionBD {
 
     // lo suyo sería recoger estas constantes de un fichero 
@@ -21,9 +25,7 @@ class ConexionBD {
      * @throws PDOException
      */
     public static function conectar():PDO {
-
         $dbh = new PDO(self::DSN, self::USER, self::PASSWORD, self::OPTIONS);
         return $dbh;
-       
-    }    
+    }
 }
