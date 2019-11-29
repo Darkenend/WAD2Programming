@@ -1,0 +1,2 @@
+create user 'ex2p3.admin'@'localhost' identified by '123_ex2p3.admin_321';
+grant all privileges on ex2p3.* to 'ex2p3.admin'@'localhost';
