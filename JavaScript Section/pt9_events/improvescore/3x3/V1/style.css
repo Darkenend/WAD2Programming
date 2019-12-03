@@ -1,0 +1,23 @@
+.bloc {
+    width:              5rem;
+    height:             5rem;
+    background-color:   gray;
+}
+
+.bloc-lock {
+    width:              5rem;
+    height:             5rem;
+    background-color:   black;
+}
+
+.bloc-lock2 {
+    width:              5rem;
+    height:             5rem;
+    background-color:   orange;
+}
+
+.bloc-lock3 {
+    width:              5rem;
+    height:             5rem;
+    background-color:   yellow;
+}
