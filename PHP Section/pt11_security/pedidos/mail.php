@@ -47,14 +47,14 @@ function leerConfigMail($nombre, $esquema) {
     if (!$config->schemaValidate($esquema)) throw new InvalidArgumentException("Hay un fallo en el fichero de configuración del correo.");
     $datos = simplexml_load_file($nombre);
     $result = [];
-    $stmp = $datos->xpath("//stmp");
+    $smtp = $datos->xpath("//smtp");
     $host = $datos->xpath("//host");
     $port = $datos->xpath("//port");
     $username = $datos->xpath("//username");
     $password = $datos->xpath("//password");
     $email = $datos->xpath("//email");
     $name = $datos->xpath("//name");
-    $result[] = $stmp;
+    $result[] = $smtp;
     $result[] = $host;
     $result[] = $port;
     $result[] = $username;
