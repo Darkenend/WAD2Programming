@@ -1,0 +1,2 @@
+create user 'admin.usuarios'@'localhost' identified by '123_admin.usuarios_321';
+grant all privileges on testSeguridad.* to 'admin.usuarios'@'localhost';

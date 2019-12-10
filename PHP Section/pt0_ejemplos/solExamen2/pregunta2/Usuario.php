@@ -89,11 +89,26 @@ class Usuario {
     }
 
     /**
+     * Guarda la nueva contraseña
+     */
+    public function savePassword() {
+        $this->save();
+    }
+
+    /**
      * Hace rehash
      * @param $contraseña a la que se le hace el rehashing
      */
     private function setPassword($contraseña) {
         $this->data->passwordHash = password_hash($contraseña, self::HASH, ['cost' => self::COST]);
+    }
+
+    /**
+     * Cambia la contraseña del usuario
+     * @param $contraseña. Nueva contraseña
+     */
+    public function newPassword($contraseña) {
+        $this->setPassword($contraseña);
     }
 
 
@@ -156,9 +171,26 @@ class Usuario {
  * @param string $clave. Clave en texto plano
  * @return bool. true éxito / false fallo de credenciales
  */
-function comprobarUsuario($nombre, $clave):bool {
+function comprobarUsuario(string $nombre,string $clave):bool {
     $usuario = new Usuario($nombre);
     //Caso de no poder conectar a la BBDD
     if (!$usuario->getValido()) return false;
     return $usuario->login($clave);
+}
+
+/**
+ * Envoltorio para ocultar la idiosincrasia de la clase
+ * @param string $nombre. Nombre de usuario
+ * @param string $clave. Vieja contraseña. No hace falta para el problema 
+ * pero permite generalizar para otros usos
+ * @param string $clave. Nueva contraseña
+ * @return bool. true éxito / false fallo de algún tipo
+ */
+function cambiarContraseñaUsuario(string $nombre, string $clave, string $nueva):bool {
+    if (!comprobarUsuario($nombre, $clave)) return false;
+    //el usuario seguro que existe en la BD y hay conectividad con la BD
+    $usuario = new Usuario($nombre);
+    $usuario->newPassword($nueva);
+    $usuario->savePassword();
+    return true;
 }

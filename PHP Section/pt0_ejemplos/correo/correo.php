@@ -36,7 +36,7 @@ function crearCorreo($carrito, $pedido, $correo) {
  * @param $listaCorreos array con direcciones de correo
  * @param $cuerpo el cuerpo del correo
  * @param $asunto asunto del correo (opcional)
- * @return TRUE si va bien. Información de error si algo va mal
+ * @return TRUE si todo va bien. Información de error si algo va mal
  */
 function enviarCorreoMultiples($listaCorreos, $cuerpo, $asunto = "") {
     $mail = new PHPMailer();

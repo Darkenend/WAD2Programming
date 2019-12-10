@@ -156,7 +156,7 @@ function cargarProductos($codigosProductos) {
  * Inserta un pedido en la BD
  * @param $carrito carrito de la compra
  * @param $codRes código del restaurante que realiza el pedido
- * @return código del nuevo pedido si va bien. FALSE en caso de error
+ * @return código del nuevo pedido si todo va bien. FALSE en caso de error
  */
 // MEJORA -> Quitar vulnerabilidad SQL injection
 function insertarPedido($carrito, $codRes) {
@@ -209,7 +209,7 @@ function insertarPedido($carrito, $codRes) {
         }
         
     }
-    // commit de la base de datos
+    // acometida de todo
     $bd->commit();
     
     // retorna el código del nuevo pedido 
