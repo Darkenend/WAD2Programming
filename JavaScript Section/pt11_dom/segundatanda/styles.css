@@ -1,0 +1,7 @@
+.bloc_in {
+    float: left;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 20px;
+}
