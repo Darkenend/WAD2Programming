@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 4 | Document Object Model | Álvaro Real</title>
+    <script src="myScript.js" defer></script>
+</head>
+<body>
+    <div id="paragraphs">
+        <p onclick="hideParagraph()" ondblclick="removeParagraph()" id="0">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus est ducimus sit aut minima beatae a quisquam optio soluta consectetur nihil excepturi blanditiis dolorem, eum veniam mollitia exercitationem velit officia.
+        </p>
+        <p onclick="hideParagraph()" ondblclick="removeParagraph()" id="1">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati odit ad soluta explicabo dolor consequuntur, enim eius ratione laboriosam quae sint voluptatem voluptatum, incidunt magnam suscipit quam, minima expedita deleniti.
+        </p>
+        <p onclick="hideParagraph()" ondblclick="removeParagraph()" id="2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi in cumque accusamus sit illo hic a animi, ullam perspiciatis dicta omnis provident tempora, pariatur accusantium id voluptates repudiandae eligendi voluptatum.
+        </p>
+    </div>
+    <div id="buttons">
+        <button onclick="showParagraphs()">
+            Reappear
+        </button>
+        <button onclick="addParagraph()">
+            Add Paragraph
+        </button>
+    </div>
+</body>
+</html>
