@@ -1,0 +1,24 @@
+<script type = "text/javascript">
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            switch (this.status) {
+                case 200:
+                    alert(this.response);
+                    break;
+                case 404:
+                    alert("Error 404: NOT FOUND");
+                    break;
+                case 400:
+                    alert("Error 400: BAD REQUEST");
+                    break;
+                case 500:
+                    alert("Error 500: INTERNAL SERVER ERROR");
+                    break;
+            }
+        }
+    }
+    xhttp.open("POST", "suma.php", false);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("n1=3&n2=4");
+</script>
