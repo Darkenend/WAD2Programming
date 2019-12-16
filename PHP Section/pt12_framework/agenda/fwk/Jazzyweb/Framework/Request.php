@@ -2,7 +2,7 @@
 /**
  *  implementación de la petición (request), que colocaremos en el archivo
  *  fwk/Jazzyweb/Framework/Request.php. Esta estructura de directorios viene
- *  determinada por el espacio de nombre al que pertenece la clase que, a su vez,
+ *  determinada por el espacio de nombres al que pertenece la clase que, a su vez,
  *  es un reflejo de la manera en que vamos a organizar el código según las normas
  *  del PSR-0. Jazzyweb es el nombre del vendor, es decir, del desarrollador de la
  *  clase. Framework simplemente indica que las clases y subespacios de
@@ -32,6 +32,26 @@ class Request {
 
         return $this->request[$name];
     }
+
+    // Ampliación: me quedo con todo el vector request
+    public function getRequest() {
+        return $this->request;
+    }
+
+    // Ampliación: preguntar si existe (true/false) un parámetro en request
+    public function exists($param) {
+        return isset($this->request[$param]);
+    }
+    
+    // Ampliación: Recuperar información del servidor ie. 'REQUEST_METHOD'
+    public function getServer($name) {
+        if(!isset($this->server[$name])) {
+            throw new \Exception('El parámetro ' . $name . ' no se encuentra en $_SERVER');
+        }
+        
+        return $this->server[$name];
+    }
+
     // en la petición http://tu.servidor/index.php/usuario/juanda
     // devuelve la ruta:usuario/juanda (derecha controlador frontal)
     public function getPath(){

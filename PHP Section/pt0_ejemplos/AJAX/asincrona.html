@@ -1,0 +1,11 @@
+<script type="text/javascript">
+    var xhttp = new XMLHttpRequest();
+    // código que gestiona la respuesta asíncrona cuando llegue
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            alert(this.response);
+        }
+    };
+    xhttp.open("GET", "horaServidor.php", true);
+    xhttp.send();
+</script>

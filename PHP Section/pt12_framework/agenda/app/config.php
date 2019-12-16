@@ -2,34 +2,60 @@
 $config = array(
     //sección rutas
     'routes' => array(
-                    'homepage' => array(
-                       'path' => '',
-                       'controller' => array(
-                           'class' => '\Jazzyweb\Bioritmos\Controller\DefaultController',
-                           'action' => 'index'
-                       )
-                    ),
-                    'homepageSlash' => array(
-                       'path' => '/',
-                       'controller' => array(
-                           'class' => '\Jazzyweb\Bioritmos\Controller\DefaultController',
-                           'action' => 'index'
-                       )
-                    ),
-                    'bioritmo' => array(
-                        'path' => '/bioritmo',
+                    'inicial' => array(
+                        'path' => '/',
                         'controller' => array(
-                            'class' => '\Jazzyweb\Bioritmos\Controller\DefaultController',
-                            'action' => 'bioritmo'
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'login'
                         )
                     ),
-                    'bioritmoSlash' => array(
-                        'path' => '/bioritmo/',
+                    'validar' => array(
+                        'path' => '/validar',
                         'controller' => array(
-                            'class' => '\Jazzyweb\Bioritmos\Controller\DefaultController',
-                            'action' => 'bioritmo'
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'validar'
+                        )
+                    ),
+                    'agenda' => array(
+                        'path' => '/agenda',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'agenda'
+                        )
+                    ),
+                    'logout' => array(
+                        'path' => '/logout',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'logout'
+                        )
+                    ),
+                    'cambiarCita' => array(
+                        'path' => '/cambiarCita',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'cambiarCita'
+                        )
+                    ),
+                    'borrarCita' => array(
+                        'path' => '/borrarCita',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'borrarCita'
+                        )
+                    ),
+                    'modificarCita' => array(
+                        'path' => '/modificarCita',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'modificarCita'
                         )
                     )
+    ),
+    //usuarios agenda
+    'users' => array(
+        'agenda' => array(
+            'password' =>'123_agenda_321'
+        )
     )
-    //otras secciones
 );

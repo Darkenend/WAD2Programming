@@ -1,11 +1,21 @@
 <?php
+/**
+ * Sirve para calcular correctamente la dirección del asset
+ * @param $asset. Ubicación relativa respecto /web ie: bioritmos/my_bior.png
+ * @return ruta absoluta del asset. 
+ */
 function asset($asset){
-    $preDir = dirname($_SERVER['SCRIPT_NAME']);
+    $preDir = dirname($_SERVER['SCRIPT_NAME']); //de index.php
     return $preDir. '/' . $asset;
 }
 
+/**
+ * Sirve para calcular correctamente la ruta
+ * @param $ruta. Ie: /, /bioritmo
+ * @return ruta absoluta
+ */
 function url($ruta){
-    $preDir = $_SERVER['SCRIPT_NAME'];
+    $preDir = $_SERVER['SCRIPT_NAME']; //de index.php
     return $preDir. $ruta;
 }
 

@@ -23,6 +23,8 @@ comprobarSesion();
 
 <?php
 require 'cabecera.php';
+//MEJORA: que iniciada sesión no se escriba /productos.php sin $_GET['categoria']
+//NOTICE:.....
 
 //Esta página se carga por URL: productos.php?categoria='xxxxxxx'.
 //En $cat --> array mixto (indice + asociativo) con nombre y descripción de $_GET['categoria']

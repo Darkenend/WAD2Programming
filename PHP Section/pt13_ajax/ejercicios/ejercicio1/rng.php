@@ -1,0 +1,2 @@
+<?php
+echo mt_rand(1, 1000);
