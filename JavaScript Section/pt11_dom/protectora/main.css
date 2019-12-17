@@ -1,0 +1,21 @@
+body {
+    background-color:   lightgray;
+}
+
+#container {
+    width:              90%;
+    height:             100%;
+    margin:             auto;
+    padding:            10px;
+}
+#index {
+    width:              20%;
+    height:             90%;
+    background:         gray;
+    float:              left;
+    padding:            10px;
+}
+#main {
+    margin-left:        20%;
+    height:             90%;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Protect-Vereda</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="myScript.js"></script>
+</head>
+<body>
+    <section id="container">
+        <aside id="index">
+            <div id="animallist">
+                <button onclick="updateAnimalList()">
+                    Mostrar Animales
+                </button>
+            </div>
+            <div id="vacunate">
+                <form>
+                    <legend>
+                        Vacunar
+                    </legend>
+                    <fieldset>
+                        <label for="id_search_v">
+                            ID del Animal:
+                        </label>
+                        <input type="number" name="id_search_v" id="id_search_v" min="1">
+                        <button onclick="vaccinateAnimal()">Vacunar</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="sterilize">
+                <form>
+                    <legend>
+                        Esterilizar
+                    </legend>
+                    <fieldset>
+                        <label for="id_search_s">
+                            ID del Animal:
+                        </label>
+                        <input type="number" name="id_search_s" id="id_search_s" min="1">
+                        <button onclick="sterilizeAnimal()">Esterilizar</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="adopt">
+                <form>
+                    <legend>
+                        Adoptar
+                    </legend>
+                    <fieldset>
+                        <label for="id_search_a">
+                            ID del Animal:
+                        </label>
+                        <input type="number" name="id_search_a" id="id_search_a" min="1">
+                        <button onclick="adoptAnimal()">Vacunar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </aside>
+        <section id="main">
+            
+        </section>
+    </section>
+</body>
+</html>
