@@ -50,6 +50,27 @@ $config = array(
                             'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
                             'action' => 'modificarCita'
                         )
+                    ),
+                    'endModificar' => array(
+                        'path' => '/endModificar',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'endModificar'
+                        )
+                    ),
+                    'nuevaCita' => array(
+                        'path' => '/nuevaCita',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'nuevaCita'
+                        )
+                    ),
+                    'crearCita' => array(
+                        'path' => '/crearCita',
+                        'controller' => array(
+                            'class' => '\Jazzyweb\Agenda\Controller\DefaultController',
+                            'action' => 'crearCita'
+                        )
                     )
     ),
     //usuarios agenda

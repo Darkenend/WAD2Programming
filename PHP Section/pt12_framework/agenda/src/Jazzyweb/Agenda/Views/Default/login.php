@@ -4,14 +4,14 @@
 <div>
     <h4><?php echo $errorLogin ?></h4>
         <form action="<?php echo url('/validar') ?>" method="post">
-            <div>
-                <input type="text" name="usuario" placeholder="usuario" value="">
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="usuario" value="">
             </div>
-            <div>
-                <input type="password" name="password" placeholder="contraseña" value="">
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="contraseña" value="">
             </div>
-            <div>
-                <input type="submit" value="Ver citas de hoy">
-            </div>
+            <input type="submit" class="btn btn-primary" value="Ver citas de hoy">
         </form>
 </div>

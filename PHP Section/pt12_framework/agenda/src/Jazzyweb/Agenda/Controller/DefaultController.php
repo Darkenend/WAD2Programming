@@ -119,25 +119,26 @@ class DefaultController {
      * Genera una cadena HTML donde van las citas asociadas a una fecha:
      *      - añade un radio por fila para seleccionar
      *      - al final añade botones para modificar y borrar filas checkeadas.
-     * @param string $fecha. AAAA-MM-DD
-     * @return string HTML
+     * @param String $fecha. AAAA-MM-DD
+     * @return String HTML
      */
     private function obtenerTablaCitas(string $fecha):string {
         $citas = new Citas();
         $tablaCitas = $citas->obtenerCitas($fecha);
         $str = '<input type="hidden" name="fechaEnCurso" value="' . $fecha . '">' . PHP_EOL. '<br>';
-        $str .= '<table>' . PHP_EOL;
-        $str .= '<tr><th>hora</th><th>asunto</th><th>seleccionada</th></tr>' . PHP_EOL;
+        $str .= '<table class="table table-sm table-hover">' . PHP_EOL;
+        $str .= '<tr><th scope="col">hora</th><th scope="col">asunto</th><th scope="col">seleccionada</th></tr>' . PHP_EOL;
         foreach($tablaCitas as $cita) {
             $str .= '<tr>';
             $str .= '<td>' . $cita['horacita'] . '</td>';
             $str .= '<td>' . $cita['asuntocita'] . '</td>';
-            $str .= '<td><input type="radio" name="citaSeleccionada" value="' . $cita['idcita'] . '"></td>';  
+            $str .= '<td><div class="form-check"><input type="radio" class="form-control" name="citaSeleccionada" value="' . $cita['idcita'] . '"></div></td>';
             $str .= '</tr>' . PHP_EOL;
         }
         $str .= '</table>';
-        $str .= '<input name="borrarCita" type="submit" value="Eliminar cita">';
-        $str .= '<input name="cambiarCita" type="submit" value="Modificar cita">' . PHP_EOL. '<br>'; 
+        $str .= '<div class="btn-group" role="group" aria-label="Buttons">';
+        $str .= '<input name="borrarCita" class="btn btn-danger" type="submit" value="Eliminar cita">';
+        $str .= '<input name="cambiarCita" class="btn btn-info" type="submit" value="Modificar cita">' . PHP_EOL. '</div><br>';
         return $str;
     }
 
@@ -193,8 +194,6 @@ class DefaultController {
 
     /**
      * Borra la cita cuyo id está en `$_SESSION['idCita']` (Al acabar se limpia ya que es global)
-     * 
-     * TODO: Implement Date deletion.
      */
     public function borrarCita($request) {
         //se comprueba que se haya accedido mediante login
@@ -206,9 +205,7 @@ class DefaultController {
         }
         $citas = new Citas();
         $citas->eliminarCita($_SESSION['idCita']);
-        $menu = '<a href="' . $request->getServer("SCRIPT_NAME") . '/logout">logout</a>';
-        $menu .= '&nbsp;';
-        $menu .= '<a href="' . $request->getServer("SCRIPT_NAME") . '/agenda">agenda</a>';
+        $menu = DefaultController::craftearMenu($request);
         $params = array(
             'menu' => $menu
         );
@@ -221,8 +218,6 @@ class DefaultController {
 
     /**
      * Modifica la cita cuyo id está en `$_SESSION['idCita']` (Al acabar se limpia ya que es global)
-     * 
-     * TODO: Implement Date modification.
      */
     public function modificarCita($request) {
         //se comprueba que se haya accedido mediante login
@@ -232,9 +227,7 @@ class DefaultController {
             $response->addHeader('Location: ' . $request->getServer('SCRIPT_NAME') . '/');
             return $response;
         }
-        $menu = '<a href="' . $request->getServer("SCRIPT_NAME") . '/logout">logout</a>';
-        $menu .= '&nbsp;';
-        $menu .= '<a href="' . $request->getServer("SCRIPT_NAME") . '/agenda">agenda</a>';
+        $menu = DefaultController::craftearMenu($request);
         $params = array(
             'menu' => $menu
         );
@@ -244,5 +237,87 @@ class DefaultController {
         $html = $templating->createView(__DIR__ . '/../Views/Default/modificar.php', $params);
         $response = new Response($html);
         return $response;
+    }
+
+    /**
+     * Termina el proceso de modificacion de una cita
+     */
+    public function endModificar($request) {
+        //comprobacion de login
+        session_start();
+        if (!isset($_SESSION['usuario'])) {
+            $response = new Response();
+            $response -> addHeader('Location: '.$request->getServer('SCRIPT_NAME').'/');
+            return $response;
+        }
+        // modificacion
+        $citas = new Citas();
+        $citas->modCita($_SESSION['idCita'], $_POST['fecha'], $_POST['hora'], $_POST['asunto']);
+        // proceso de dispatch de pagina
+        $menu = DefaultController::craftearMenu($request);
+        $params = array(
+            'menu' => $menu
+        );
+        $templating = new Templating();
+        $templating->setLayout(__DIR__ . '/../Views/layout.php');
+        $html = $templating->createView(__DIR__ . '/../Views/Default/endmodificar.php', $params);
+        $response = new Response($html);
+        return $response;
+    }
+
+    /**
+     * Principio del proceso de creacion de citas
+     */
+    public function nuevaCita($request) {
+        //comprobacion de login
+        session_start();
+        if (!isset($_SESSION['usuario'])) {
+            $response = new Response();
+            $response -> addHeader('Location: '.$request->getServer('SCRIPT_NAME').'/');
+            return $response;
+        }
+        //proceso de dispatch de pagina
+        $menu = DefaultController::craftearMenu($request);
+        $params = array(
+            'menu' => $menu
+        );
+        $templating = new Templating();
+        $templating->setLayout(__DIR__ . '/../Views/layout.php');
+        
+        $html = $templating->createView(__DIR__ . '/../Views/Default/nuevacita.php', $params);
+        $response = new Response($html);
+        return $response;
+    }
+
+    public function crearCita($request) {
+        //comprobacion de login
+        session_start();
+        if (!isset($_SESSION['usuario'])) {
+            $response = new Response();
+            $response -> addHeader('Location: '.$request->getServer('SCRIPT_NAME').'/');
+            return $response;
+        }
+        // creacion
+        $citas = new Citas();
+        $citas->creacionCita($_POST['fecha'], $_POST['hora'], $_POST['asunto']);
+        // proceso de dispatch de la pagina
+        $menu = DefaultController::craftearMenu($request);
+        $params = array(
+            'menu' => $menu
+        );
+        $templating = new Templating();
+        $templating->setLayout(__DIR__ . '/../Views/layout.php');
+        
+        $html = $templating->createView(__DIR__ . '/../Views/Default/citacreada.php', $params);
+        $response = new Response($html);
+        return $response;
+    }
+
+    public function craftearMenu($request) {
+        $menu = "<nav class='navbar navbar-expand-lg navbar-light bg-light' style='background-color: #e3f2fd;'>";
+        $menu .= "<a class='navbar-brand' href='".$request->getServer("SCRIPT_NAME")."/agenda'>Agenda</a>";
+        $menu .= "<a class='btn btn-outline-danger navbar-right' href='".$request->getServer("SCRIPT_NAME")."/logout'>Logout</a>";
+        $menu .= "</nav>";
+        return $menu;
     }
 }

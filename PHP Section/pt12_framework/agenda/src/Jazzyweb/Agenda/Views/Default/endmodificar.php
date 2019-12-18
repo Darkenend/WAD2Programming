@@ -3,10 +3,10 @@
         <?php echo $menu ?>
     </div>
     <h2>
-        La cita ha sido borrada
+        La cita ha sido modificada
     </h2>
     <p>
-        Cita con la ID <?php echo $_SESSION['idCita']; ?> ha sido borrada, para volver a la agenda, haz click en el botón de abajo.
+        La cita con la ID <?php echo $_SESSION['idCita']; ?> ha sido modificada, haz clic en el boton de abajo para volver a la agenda.
     </p>
     <form action="<?php echo url('/agenda') ?>" method="post">
         <input type="submit" value="Volver">

@@ -81,10 +81,52 @@ class Citas {
         return ($tabla);
     }
 
+    /**
+     * Esta funcion se encarga de eliminar una cita de la base de datos
+     * @param integer $idcita ID de la cita que se va a eliminar
+     */
     public function eliminarCita(int $idcita) {
         $this->dbh = ConexionBD::conectar();
         $stmt = $this->dbh->prepare('DELETE FROM `citas` WHERE `citas`.`idcita` = :idcita');
         $stmt->bindParam(':idcita', $idcita);
+        $stmt->execute();
+    }
+
+    /**
+     * Esta funcion modifica una cita en la base de datos
+     * @param integer $idcita ID de la cita que se va a modificar
+     * @param string $fecha Fecha nueva de la cita, se deberia de tomar de
+     * un formulario o bien insertar en formato d/m/Y (formato PHP)
+     * @param string $hora Hora nueva de la cita, se deberia de tomar de un formulario
+     * @param string $asunto Nuevo asunto de la cita, es un string normal y corriente
+     */
+    public function modCita(int $idcita, string $fecha, string $hora, string $asunto) {
+        $string_building = str_replace('/', '-', $fecha);
+        $fechaProcessed = date('Y-m-d', strtotime($string_building));
+        $this->dbh = ConexionBD::conectar();
+        $stmt = $this->dbh->prepare('UPDATE `citas` SET `horacita` = :hora, `diacita` = :fecha, `asuntocita` = :asunto WHERE `citas`.`idcita` = :idcita');
+        $stmt->bindParam(':idcita', $idcita);
+        $stmt->bindParam(':fecha', $fechaProcessed);
+        $stmt->bindParam(':hora', $hora);
+        $stmt->bindParam(':asunto', $asunto);
+        $stmt->execute();
+    }
+
+    /**
+     * Esta funcion crea una nueva cita en la base de datos
+     * @param string $fecha Fecha nueva de la cita, se deberia de tomar de
+     * un formulario o bien insertar en formato d/m/Y (formato PHP)
+     * @param string $hora Hora nueva de la cita, se deberia de tomar de un formulario
+     * @param string $asunto Nuevo asunto de la cita, es un string normal y corriente
+     */
+    public function creacionCita(string $fecha, string $hora, string $asunto) {
+        $string_building = str_replace('/', '-', $fecha);
+        $fechaProcessed = date('Y-m-d', strtotime($string_building));
+        $this->dbh = ConexionBD::conectar();
+        $stmt = $this->dbh->prepare("INSERT INTO `citas` (`idcita`, `horacita`, `diacita`, `asuntocita`) VALUES (NULL, :hora, :fecha, :asunto)");
+        $stmt->bindParam(':fecha', $fechaProcessed);
+        $stmt->bindParam(':hora', $hora);
+        $stmt->bindParam(':asunto', $asunto);
         $stmt->execute();
     }
 }
