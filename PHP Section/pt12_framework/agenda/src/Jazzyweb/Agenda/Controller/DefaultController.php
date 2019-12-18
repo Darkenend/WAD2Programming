@@ -85,7 +85,7 @@ class DefaultController {
         }
         //vector de parámetros para la plantilla
         $params = array(
-            'menu' => '<a href="' . $request->getServer("SCRIPT_NAME") . '/logout">logout</a>',
+            'menu' => "<a class='btn btn-outline-danger navbar-right' href='".$request->getServer("SCRIPT_NAME")."/logout'>Logout</a>",
             'fecha' => '',
             'nCitas' => '',
             'citas' => '' //cadena HTML con todas las citas
@@ -127,18 +127,18 @@ class DefaultController {
         $tablaCitas = $citas->obtenerCitas($fecha);
         $str = '<input type="hidden" name="fechaEnCurso" value="' . $fecha . '">' . PHP_EOL. '<br>';
         $str .= '<table class="table table-sm table-hover">' . PHP_EOL;
-        $str .= '<tr><th scope="col">hora</th><th scope="col">asunto</th><th scope="col">seleccionada</th></tr>' . PHP_EOL;
+        $str .= '<tr><th scope="col">Hora</th><th scope="col">Asunto</th><th scope="col">Seleccionada</th></tr>' . PHP_EOL;
         foreach($tablaCitas as $cita) {
             $str .= '<tr>';
             $str .= '<td>' . $cita['horacita'] . '</td>';
             $str .= '<td>' . $cita['asuntocita'] . '</td>';
-            $str .= '<td><div class="form-check"><input type="radio" class="form-control" name="citaSeleccionada" value="' . $cita['idcita'] . '"></div></td>';
+            $str .= '<td><div class="form-check"><input type="radio" class="form-control" onclick="activateButtons()" name="citaSeleccionada" value="' . $cita['idcita'] . '"></div></td>';
             $str .= '</tr>' . PHP_EOL;
         }
         $str .= '</table>';
         $str .= '<div class="btn-group" role="group" aria-label="Buttons">';
-        $str .= '<input name="borrarCita" class="btn btn-danger" type="submit" value="Eliminar cita">';
-        $str .= '<input name="cambiarCita" class="btn btn-info" type="submit" value="Modificar cita">' . PHP_EOL. '</div><br>';
+        $str .= '<input name="borrarCita" id="borrarCita" class="btn btn-danger" type="submit" value="Eliminar cita" disabled>';
+        $str .= '<input name="cambiarCita" id="cambiarCita" class="btn btn-info" type="submit" value="Modificar cita" disabled>' . PHP_EOL. '</div><br>';
         return $str;
     }
 
@@ -289,6 +289,9 @@ class DefaultController {
         return $response;
     }
 
+    /**
+     * Funcion responsable de la creacion de la cita en si
+     */
     public function crearCita($request) {
         //comprobacion de login
         session_start();
@@ -313,8 +316,11 @@ class DefaultController {
         return $response;
     }
 
+    /**
+     * Esta funcion automaticamente implementa un menu generico para todas las paginas en las que sea necesario
+     */
     public function craftearMenu($request) {
-        $menu = "<nav class='navbar navbar-expand-lg navbar-light bg-light' style='background-color: #e3f2fd;'>";
+        $menu = "<nav class='navbar navbar-expand-lg navbar-light' style='background-color: #e3f2fd;'>";
         $menu .= "<a class='navbar-brand' href='".$request->getServer("SCRIPT_NAME")."/agenda'>Agenda</a>";
         $menu .= "<a class='btn btn-outline-danger navbar-right' href='".$request->getServer("SCRIPT_NAME")."/logout'>Logout</a>";
         $menu .= "</nav>";

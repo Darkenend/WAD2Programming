@@ -40,26 +40,79 @@ function Animal(race, age, vaccine, sterile) {
     }
 }
 
+/**
+ * This function handles the adoption of an animal
+ */
 function adoptAnimal() {
     var animalID = document.getElementById('id_search_a').value;
     for (var i = 0; i < animals.length; i++) if (animalID == animals[i].id) animals.splice(animals.indexOf(animals[i]), 1);
     updateAnimalList();
 }
 
+/**
+ * This function handles the sterilization of an animal
+ */
 function sterilizeAnimal() {
+    var myId = document.getElementById('id_search_s').value;
     for (var i = 0; i < animals.length; i++) {
         if (animals[i].id == myId) {
-            if (animals[i].sterilize()) alert("El animal con ID "+animals[i].id+" ha sido vacunado.");
-            else alert("El animal con ID "+animals[i].id+" ya estaba vacunado.");
-        } else {
-            
+            if (animals[i].sterile) {
+                alert("El animal con ID "+animals[i].id+" ya estaba esterilizado.");
+            } else {
+                animals[i].sterile = true;
+                alert("El animal con ID "+animals[i].id+" ha sido esterilizado.");
+            }
         }
     }
     updateAnimalList();
 }
 
-function showAnimal() {
-    console.log("showing animal");
+/**
+ * This function handles the vaccination of an animal
+ */
+function vaccinateAnimal() {
+    var myId = document.getElementById('id_search_v').value;
+    for (var i = 0; i < animals.length; i++) {
+        if (animals[i].id == myId) {
+            if (animals[i].vaccine) {
+                alert("El animal con ID "+animals[i].id+" ya estaba vacunado.");
+            } else {
+                animals[i].vaccine = true;
+                alert("El animal con ID "+animals[i].id+" ha sido vacunado.");
+            }
+        }
+    }
+    updateAnimalList();
+}
+
+/**
+ * This function shows an animal's data in the main panel of the website.
+ * @param {Event} event This event is used to gather which animal is being shown
+ */
+function showAnimal(event) {
+    var myEvent = event || window.event;
+    var main = document.getElementById('main');
+    main.innerHTML = "";
+    var id = parseInt(event.target.innerHTML);
+    var header = document.createElement('h4');
+    header.appendChild(document.createTextNode('Animal '+id));
+    var ul = document.createElement('ul');
+    var age = document.createElement('li');
+    age.appendChild(document.createTextNode(animals[id-1].age+' años'));
+    var race = document.createElement('li');
+    race.appendChild(document.createTextNode(animals[id-1].race));
+    var vaccinated = document.createElement('li');
+    if (animals[id-1].vaccine) vaccinated.appendChild(document.createTextNode('Vacunado'));
+    else vaccinated.appendChild(document.createTextNode('No Vacunado'));
+    var sterilized = document.createElement('li');
+    if (animals[id-1].sterile) sterilized.appendChild(document.createTextNode('Esterilizado'));
+    else sterilized.appendChild(document.createTextNode('No Esterilizado'));
+    ul.appendChild(age);
+    ul.appendChild(race);
+    ul.appendChild(vaccinated);
+    ul.appendChild(sterilized);
+    main.appendChild(header);
+    main.appendChild(ul);
 }
 
 /**
@@ -68,6 +121,8 @@ function showAnimal() {
 function updateAnimalList() {
     var list_container = document.getElementById('animallist');
     list_container.innerHTML = "";
+    var main = document.getElementById('main');
+    main.innerHTML = "";
     var header = document.createElement('h4');
     header.appendChild(document.createTextNode('Animales'));
     list_container.appendChild(header);
