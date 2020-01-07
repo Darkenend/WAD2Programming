@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ahorcado | Álvaro Real</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div id="game_info" class="centered-text">
+        <table>
+            <tr>
+                <th>Tiempo Restante</td>
+                <th>Longitud</td>
+                <th>Vidas Restantes</td>
+                <th>Letras Resueltas</th>
+            </tr>
+            <tr>
+                <td id="time_remaining">0</td>
+                <td id="word_length">0</td>
+                <td id="lifes_remaining">0</td>
+                <td id="word_score">0</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div id="result_status" class="centered-text">
+        Ejemplo visual con la palabra RAINMAKER
+        <table>
+            <tr>
+                <td>R</td>
+                <td>A</td>
+                <td>_</td>
+                <td>N</td>
+                <td>_</td>
+                <td>A</td>
+                <td>K</td>
+                <td>_</td>
+                <td>R</td>
+            </tr>
+        </table>
+        <div id="errores" class="centered-text">
+            Errores: C, E, U
+        </div>
+        <button onclick="matchPreparation()">Empezar Nueva Partida</button>
+    </div>
+    <hr>
+    <div id="player_input" class="centered-text">
+        <input type="text" name="user_character" id="user_character" maxlength="1">
+        <button onclick="tryNewCharacter()">Enviar</button>
+    </div>
+</body>
+</html>
