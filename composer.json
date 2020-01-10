@@ -3,6 +3,7 @@
     "phpmailer/phpmailer": "~6.1",
     "ext-calendar": "*",
     "ext-simplexml": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "doctrine/orm": "*"
   }
 }
