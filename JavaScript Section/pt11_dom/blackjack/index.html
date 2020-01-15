@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blackjack | Álvaro Real</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div id="game_info" class="centered-text">
+        <table>
+            <tr>
+                <th>Current Funds</td>
+                <th>Rounds Won</td>
+                <th>Player Profits</td>
+                <th>Current Bet</th>
+            </tr>
+            <tr>
+                <td id="current_funds">0</td>
+                <td id="won">0</td>
+                <td id="profits">0</td>
+                <td id="current_bet">0</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div id="result_status" class="centered-text">
+        BLACKJACK
+        <table>
+            <th>
+                Dealer
+            </th>
+            <tr id="dealer_card_container">
+            </tr>
+            <th>
+                Player
+            </th>
+            <tr id="player_card_container">
+            </tr>
+        </table>
+        <div id="errores" class="centered-text">
+            
+        </div>
+        <button id="deal_button" onclick="matchPreparation()">Deal</button>
+    </div>
+    <hr>
+    <div id="controls" class="centered-text">
+        <button id="hit_button" onclick="hit()" disabled>Hit</button>
+        <button id="stand_button" onclick="stand()" disabled>Stand</button>
+        <button id="double_button" onclick="double()" disabled>Double Down</button>
+        <button id="surrender_button" onclick="surrender()" disabled>Surrender</button>
+    </div>
+</body>
+</html>

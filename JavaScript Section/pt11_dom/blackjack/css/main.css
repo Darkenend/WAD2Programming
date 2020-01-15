@@ -18,10 +18,6 @@ td, th {
     border-bottom:      1px solid #ddd;
 }
 
-td:hover, th:hover {
-    background-color:   #ddd;
-}
-
 .centered-text {
     text-align:         center;
 }
@@ -29,4 +25,8 @@ td:hover, th:hover {
 #game_info, #result_status, #player_input {
     width:              100%;
     height:             30%;
+}
+
+#dealer_card_container > img, #player_card_container > img {
+    height:             100px;
 }
