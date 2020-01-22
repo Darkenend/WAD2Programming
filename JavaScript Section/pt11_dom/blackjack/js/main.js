@@ -39,6 +39,7 @@ function matchPreparation() {
     cardDealing();
     checkHand(true);
     checkHand(false);
+    round_step++;
     updateDesk();
     document.getElementById('hit_button').disabled = false;
     document.getElementById('stand_button').disabled = false;
@@ -74,6 +75,10 @@ function checkHand(playerhand) {
     if (checkScore(current_score)) playerhand ? player_score = checkScore(current_score) : dealer_score = checkScore(current_score);
 }
 
+/**
+ * This function checks the score of a hand
+ * @param {Array} hand Array that contains the cards in a hand
+ */
 function checkScore(hand) {
     var sum = 0;
     var aces = 0;
@@ -99,12 +104,16 @@ function checkScore(hand) {
     return sum;
 }
 
+/**
+ * This function updates the desk with all the cards in both the dealer and the player's hand.
+ */
 function updateDesk() {
     var dealer_zone = document.getElementById('dealer_card_container');
     var player_zone = document.getElementById('player_card_container');
     for (var i = 0; i < dealer_hand.length; i++) {
         var image = document.createElement('img');
-        image.src = "img/"+dealer_hand[i]+".svg";
+        if (i === 0) image.src = "img/Back.svg"
+        else image.src = "img/"+dealer_hand[i]+".svg";
         dealer_zone.appendChild(image);
     }
     for (var i = 0; i < player_hand.length; i++) {
@@ -141,6 +150,26 @@ function cardValue(cardstring) {
         default:
             return 10;
     }
+}
+
+function hit() {
+    console.log("Action: Hit");
+    // TODO: Implement Hit
+}
+
+function stand() {
+    console.log("Action: Stand");
+    // TODO: Implement Stand
+}
+
+function double() {
+    console.log("Action: Double");
+    // TODO: Implement Double
+}
+
+function surrender() {
+    console.log("Action: Surrender");
+    // TODO: Implement Surrender
 }
 
 /**

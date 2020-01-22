@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mecanovereda | Álvaro Real</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center py-3">
+            <h3 class="text-center">Mecanovereda</h3>
+        </div>
+        <div class="row justify-content-center" id="main-panel">
+            <div class="col-xl-3">
+                <h6>
+                    Palabras por minuto
+                </h6>
+                <p class="text-justify">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus dignissimos molestias dolor tempora id fuga voluptates reiciendis autem aperiam repudiandae animi rerum amet, sapiente eos. Aliquid, suscipit quasi! Totam, expedita?
+                </p>
+                <button type="button" id="ppm-btn" class="btn btn-primary" onclick="activarPPM()">
+                    Modo PPM
+                </button>
+            </div>
+            <div class="col-xl-3">
+                <h6>
+                    Reto
+                </h6>
+                <p class="text-justify">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, dolorem perspiciatis. Nam reiciendis obcaecati laborum quia dignissimos maiores, temporibus mollitia iste suscipit eveniet quam inventore ducimus debitis. Quis, possimus in.
+                </p>
+                <button type="button" id="reto-btn" class="btn btn-primary" onclick="activarReto()" disabled>
+                    Modo Reto
+                </button>
+            </div>
+        </div>
+        <div id="info-row" class="row justify-content-center py-3">
+            <div class="col-2">
+                <button type="button" id="start-btn" class="btn btn-success" onclick="start()" disabled>
+                    Empezar
+                </button>
+            </div>
+            <div class="col-2">
+                <button type="button" id="stop-btn" class="btn btn-danger" onclick="stop()" disabled>
+                    Parar
+                </button>
+            </div>
+            <div class="col-2" id="result-field">Result: </div>
+        </div>
+    </div>
+</body>
+</html>
