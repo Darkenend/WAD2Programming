@@ -6,15 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mecanovereda | Álvaro Real</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onkeydown="keyHandling()">
     <div class="container-fluid">
         <div class="row justify-content-center py-3">
-            <h3 class="text-center">Mecanovereda</h3>
+            <h3 class="text-center col-12 col-xl-3">Mecanovereda</h3>
+            <h4 id="current-mode" class="text-center col-12 offset-xl-6 col-xl-3">Modo: Ninguno Seleccionado</h4>
+        </div>
+        <div class="row justify-content-center py-3" id="game-panel">
+
         </div>
         <div class="row justify-content-center" id="main-panel">
             <div class="col-xl-3">
@@ -24,7 +28,7 @@
                 <p class="text-justify">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus dignissimos molestias dolor tempora id fuga voluptates reiciendis autem aperiam repudiandae animi rerum amet, sapiente eos. Aliquid, suscipit quasi! Totam, expedita?
                 </p>
-                <button type="button" id="ppm-btn" class="btn btn-primary" onclick="activarPPM()">
+                <button type="button" id="ppm-btn" class="btn btn-primary" onclick="activateKPM()">
                     Modo PPM
                 </button>
             </div>
@@ -35,8 +39,14 @@
                 <p class="text-justify">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, dolorem perspiciatis. Nam reiciendis obcaecati laborum quia dignissimos maiores, temporibus mollitia iste suscipit eveniet quam inventore ducimus debitis. Quis, possimus in.
                 </p>
-                <button type="button" id="reto-btn" class="btn btn-primary" onclick="activarReto()" disabled>
+                <button type="button" id="challenge-btn" class="btn btn-primary" onclick="activateChallenge()" disabled>
                     Modo Reto
+                </button>
+                <button type="button" id="sudden-death" class="btn btn-secondary" onclick="activateSuddenDeath()" disabled hidden>
+                    1 Fallo
+                </button>
+                <button type="button" id="timed" class="btn btn-secondary" onclick="activateTimed()" disabled hidden>
+                    Tiempo
                 </button>
             </div>
         </div>
@@ -51,7 +61,7 @@
                     Parar
                 </button>
             </div>
-            <div class="col-2" id="result-field">Result: </div>
+            <div class="col-2" id="result-field">Resultado: </div>
         </div>
     </div>
 </body>

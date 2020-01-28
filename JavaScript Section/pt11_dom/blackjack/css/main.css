@@ -1,12 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Advent+Pro:200|Open+Sans|Petit+Formal+Script&display=swap');
+
+:root {
+    --information:      'Advent Pro', sans-serif;
+    --normal:           'Open Sans', sans-serif;
+    --handwritten:      'Petit Formal Script', cursive;
+}
+
 body {
     margin:             0;
     padding:            8px;
+    background-color:   #006600;
+    font-family:        var(--normal);
 }
 
 hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    border:             0;
+    height:             1px;
+    background-image:   linear-gradient(to right,
+                            rgba(0, 0, 0, 0),
+                            rgba(0, 0, 0, 0.75),
+                            rgba(0, 0, 0, 0));
 }
 
 table {
@@ -16,10 +29,15 @@ table {
 
 td, th {
     border-bottom:      1px solid #ddd;
+    font-family:        var(--information);
 }
 
 .centered-text {
     text-align:         center;
+}
+
+#title {
+    font-family:        var(--handwritten);
 }
 
 #game_info, #result_status, #player_input {

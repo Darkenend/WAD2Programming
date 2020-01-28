@@ -5,6 +5,8 @@ var player_hand = [];
 var dealer_score = [];
 var player_score = [];
 var current_funds = 500;
+var initial_funds = current_funds;
+var game_started = false;
 var won = 0;
 var current_bet = 0;
 var round = 1;
@@ -21,30 +23,41 @@ var round = 1;
 var round_step = 0;
 var used_deck = shuffle(base_deck);
 
+function updateInfo() {
+    document.getElementById("current_funds").innerHTML = current_funds;
+    document.getElementById("won").innerHTML = won;
+    document.getElementById("profits").innerHTML = current_funds - initial_funds;
+    document.getElementById("current_bet").innerHTML = current_bet;
+}
+
 /**
  * This function prepares the new round
+ * TODO: MUST COMMENT THIS FUNCTION AND COMPACT IT
  */
 function matchPreparation() {
+    round_step = 0;
     document.getElementById('deal_button').remove();
-    var temp_fund = parseInt(prompt("Insert how much money do you want to play with, don't write anything for a default of $500 (Wrong inputs will be counted as default too)"));
-    isNaN(temp_fund) ? current_funds = 500 : current_funds = temp_fund;
-    used_deck = shuffle(used_deck);
-    current_bet = parseInt(prompt("How much do you wanna bet:"));
-    while(isNaN(current_bet) || current_bet > current_funds) {
-        current_bet = parseInt(prompt("Invalid bet. Rewrite your bet:"));
+    // * This part is only done when the game hasn't been set up yet.
+    if (!game_started) {
+        var temp_fund = parseInt(prompt("Insert how much money do you want to play with, don't write anything for a default of $500 (Wrong inputs will be counted as default too)"));
+        isNaN(temp_fund) ? current_funds = 500 : current_funds = temp_fund;
+        initial_funds = current_funds;
+        game_started = true;
+        used_deck = shuffle(used_deck);
+        current_bet = parseInt(prompt("How much do you wanna bet: (This will be applied to all the rounds played in the game)"));
+        while(isNaN(current_bet) || current_bet > current_funds) {
+            current_bet = parseInt(prompt("Invalid bet. Rewrite your bet:"));
+        }
     }
-    document.getElementById('current_funds').innerHTML = current_funds;
-    document.getElementById('current_bet').innerHTML = current_bet;
+    updateInfo();
     round_step++;
     cardDealing();
     checkHand(true);
     checkHand(false);
     round_step++;
     updateDesk();
-    document.getElementById('hit_button').disabled = false;
-    document.getElementById('stand_button').disabled = false;
-    document.getElementById('double_button').disabled = false;
-    document.getElementById('surrender_button').disabled = false;
+    enableButtons();
+    round_step++;
 }
 
 /**
@@ -60,6 +73,7 @@ function cardDealing() {
         player_hand.push(used_deck.pop());
     }
 }
+
 /**
  * This function checks the cards in a hand, and adjust the score appropriately.
  * @param {boolean} playerhand Boolean that indicates if the hand being checked is the player's (`true`), or the dealer's (`false`)
@@ -78,6 +92,7 @@ function checkHand(playerhand) {
 /**
  * This function checks the score of a hand
  * @param {Array} hand Array that contains the cards in a hand
+ * @returns {int} Score of said hand.
  */
 function checkScore(hand) {
     var sum = 0;
@@ -110,6 +125,8 @@ function checkScore(hand) {
 function updateDesk() {
     var dealer_zone = document.getElementById('dealer_card_container');
     var player_zone = document.getElementById('player_card_container');
+    dealer_zone.innerHTML = "";
+    player_zone.innerHTML = "";
     for (var i = 0; i < dealer_hand.length; i++) {
         var image = document.createElement('img');
         if (i === 0) image.src = "img/Back.svg"
@@ -121,6 +138,7 @@ function updateDesk() {
         image.src = "img/"+player_hand[i]+".svg";
         player_zone.appendChild(image);
     }
+    document.getElementById("player_score_container").innerHTML = "<h3>"+player_score+"</h3>";
 }
 
 /**
@@ -152,24 +170,126 @@ function cardValue(cardstring) {
     }
 }
 
+/**
+ * This function does the whole process of hitting and getting more cards
+ */
 function hit() {
-    console.log("Action: Hit");
-    // TODO: Implement Hit
+    if (round_step === 3) {
+        document.getElementById('double_button').disabled = true;
+        document.getElementById('surrender_button').disabled = true;
+        cardDealing();
+        round_step++;
+    } else cardDealing();
+    checkHand(true);
+    updateDesk();
 }
 
+/**
+ * This function does the process of standing and stops the game
+ */
 function stand() {
     console.log("Action: Stand");
     // TODO: Implement Stand
+    disableButtons();
+    addDealButton();
+    round_step++;
+    endGame(false);
 }
 
+/**
+ * This function doubles the current bet, hits one card and then immediately stands
+ * 
+ * *Only to be used in the FIRST round*
+ */
 function double() {
     console.log("Action: Double");
     // TODO: Implement Double
+    disableButtons();
+    addDealButton();
+    round_step = 5;
+    endGame(false);
 }
 
+/**
+ * This function surrenders the hand irrelevant of score
+ * 
+ * *Only to be used in the FIRST round*
+ */
 function surrender() {
     console.log("Action: Surrender");
     // TODO: Implement Surrender
+    disableButtons();
+    addDealButton();
+    round_step = 5;
+    endGame(true);
+}
+
+
+/**
+ * This function just disables the buttons in the control section.
+ */
+function disableButtons() {
+    document.getElementById('hit_button').disabled = true;
+    document.getElementById('stand_button').disabled = true;
+    document.getElementById('double_button').disabled = true;
+    document.getElementById('surrender_button').disabled = true;
+}
+
+/**
+ * This function just enables the buttons in the control section.
+ */
+function enableButtons() {
+    document.getElementById('hit_button').disabled = false;
+    document.getElementById('stand_button').disabled = false;
+    document.getElementById('double_button').disabled = false;
+    document.getElementById('surrender_button').disabled = false;
+}
+
+/**
+ * This function adds a deal button to the results section.
+ */
+function addDealButton() {
+    var div = document.getElementById('deal_div');
+    var button = document.createElement('button');
+    button.id = "deal_button";
+    button.addEventListener('click', matchPreparation);
+    button.innerHTML = "Deal";
+    div.appendChild(button);
+}
+
+/**
+ * This function clears the hands, then gets a new deck and allows a new game to start.
+ * @param {boolean} surrendered Has the player surrendered
+ */
+function endGame(surrendered) {
+    player_score = checkScore(player_hand);
+    if (surrendered || player_score > 21) {
+        current_funds -= current_bet;
+        current_bet = 0;
+    } else {
+        var dealer_score = checkScore(dealer_score);
+        if (dealer_score === player_score) {
+            //* We go here when it's a Draw
+        } else {
+            if (dealer_score > player_score) {
+                //* We go here when it's a Loss
+            } else {
+                //* We go here when it's a Win
+                won++;
+            }
+        }
+    }
+    round_step++;
+
+}
+
+function deckSetup() {
+    dealer_hand = [];
+    player_hand = [];
+    dealer_score = [];
+    player_score = [];
+    used_deck = shuffle(base_deck);
+    round++;
 }
 
 /**
