@@ -1,0 +1,52 @@
+{
+    "peliculas": [
+        {
+            "titulo": "Aquellas Juergas Universitarias",
+            "direccion": [
+                "Todd Philips"
+            ],
+            "informacion": {
+                "pais": "EEUU",
+                "titulooriginal": "Old School",
+                "año": 2003,
+                "minutos": 93
+            },
+            "interpretes": [
+                "Will Ferrell",
+                "Luke Wilson",
+                "Vince Vaughn",
+                "Jeremy Piven",
+                "Juliette Lewis",
+                "Sean William-Scott"
+            ],
+            "descripcion": "Mitch, Frank y Beanie son tres amigos treintañeros cuyas vidas no son exactamente lo que esperaban. Mitch tiene una novia ninfómana que se mete en la cama con el primero que agarra. Frank se ha casado y su matrimonio nada tiene que ver con las juergas salvajes que organizaban años atrás. Y Beanie es un padre de familia que se muere por recuperar su alocada juventud. Pero las cosas cambian cuando Beanie sugiere que creen su propia fraternidad, en la nueva casa que Mitch tiene junto al campus de la universidad. Una ocasión para revivir tiempos gloriosos, hacer nuevos amigos y de volver a sus viejas, salvajes y desmadradas juergas de estudiantes.",
+            "url": "http://www.oldschool-themovie.com/",
+            "genero": "Comedia",
+            "calificacion": "16"
+        },
+        {
+            "titulo": "REC",
+            "informacion": {
+                "pais": "España",
+                "titulooriginal": "REC",
+                "año": 2007,
+                "minutos": 80
+            },
+            "direccion": [
+                "Jaume Balagueró",
+                "Paco Plaza"
+            ],
+            "interpretes": [
+                "Manuela Velasco",
+                "Ferrán Terraza",
+                "Jorge Serrano",
+                "Pablo Rosso",
+                "David Vert"
+            ],
+            "descripcion": "La reportera Ángela Vidal y su camarógrafo Pablo son un dúo de periodistas que producen un programa matutino en España, titulado 'Mientras usted duerme', donde se dedican a hacer reportajes de diferentes temáticas. Su más reciente episodio lo dedican a las actividades de los bomberos. Como parte de su reportaje, ambos acompañan a la brigada que entrevistan a atender una llamada de emergencia proveniente de un edificio del centro de Barcelona. Al llegar, el grupo es informado de la situación: uno de los inquilinos, la sra. Izquierdo, se ha encerrado en su habitación, alterando con sus gritos al resto de los vecinos del edificio. Ayudados por dos agentes de policía que ya habían llegado a la escena, acuden al piso de la sra. Izquierdo, que durante su desalojo ataca y muerde en el cuello a uno de los oficiales.",
+            "url": "",
+            "genero": "Terror",
+            "calificacion": "18"
+        }
+    ]
+}

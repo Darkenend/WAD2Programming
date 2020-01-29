@@ -1,0 +1,43 @@
+{
+    "pedidos": [
+        {
+            "nombre": "Juan",
+            "apellidos": "Delgado Martinez",
+            "pedido": {
+                "bicicleta": "A2023"
+            },
+            "direccion": {
+                "calle": "Barco",
+                "numero": 4,
+                "extra": "Tercer Piso A"
+            },
+            "fecha": "2000-5-19"
+        },
+        {
+            "nombre": "Álvaro",
+            "apellidos": "Real Gomez",
+            "pedido": {
+                "guantes": "CUSTOM"
+            },
+            "direccion": {
+                "calle": "Turia",
+                "numero": 39,
+                "extra": "Puerta 6"
+            },
+            "fecha": "2020-1-12"
+        },
+        {
+            "nombre": "John",
+            "apellidos": "Doe",
+            "pedido": {
+                "rifle": "M1 Garand"
+            },
+            "direccion": {
+                "calle": "Fake Address",
+                "numero": 123,
+                "extra": ""
+            },
+            "fecha": "1945-1-1"
+        }
+    ]
+}

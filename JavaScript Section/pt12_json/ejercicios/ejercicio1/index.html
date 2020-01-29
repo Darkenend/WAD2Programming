@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Álvaro Real | JSON 1</title>
+    <script src="js/myScript.js" defer></script>
+</head>
+<body>
+    <form method="get">
+        <legend>
+            Formulario Busqueda
+        </legend>
+        <fieldset>
+            <label for="name-search">Nombre: </label>
+            <input type="text" name="name-search" id="name-search"><hr>
+            <label for="lastname-search">Apellidos: </label>
+            <input type="text" name="lastname-search" id="lastname-search"><hr>
+            <button type="button" onclick="buscarPedido()">
+                Buscar
+            </button>
+        </fieldset>
+    </form>
+    <hr>
+    <div id="results">
+
+    </div>
+    <hr>
+    <form method="get">
+        <legend>
+            Formulario Inserción
+        </legend>
+        <fieldset>
+            <label for="name">Nombre: </label>
+            <input type="text" name="name" id="name"><hr>
+            <label for="lastname">Apellido: </label>
+            <input type="text" name="lastname" id="lastname"><hr>
+            Direccion 
+            <label for="street">Calle: </label>
+            <input type="text" name="street" id="street"><br>
+            <label for="number">Numero: </label>
+            <input type="number" name="number" id="number"><br>
+            <label for="extra">Planta/Puerta/Letra: </label>
+            <input type="text" name="extra" id="extra"><br><hr>
+            <label for="date">Fecha: </label>
+            <input type="date" name="date" id="date"><hr>
+            <button type="button" onclick="insertarPedido()">
+                Insertar
+            </button>
+        </fieldset>
+    </form>
+</body>
+</html>

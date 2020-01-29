@@ -1,0 +1,125 @@
+{
+    "arboles": [
+        {
+            "nombrecientifico": "Acer Monspessulanum",
+            "nombre": [
+                "Arce de Montpellier",
+                "Arce Común"
+            ],
+            "vegetacion": "Caducifolio",
+            "altura": {
+                "minima": 6,
+                "maxima": 10
+            },
+            "color": {
+                "primavera": {
+                    "hojasjovenes": "",
+                    "hojasantiguas": {
+                        "haz": "Verde Brillante",
+                        "enves": "Verde Blanquecino"
+                    }
+                },
+                "otono": ""
+            },
+            "estructura": {
+                "copa": "Esférica",
+                "tronco": "Recto con bifurcaciones",
+                "ramaje": "Colgante"
+            },
+            "resistenciaheladas": {
+                "tipo": "fuerte",
+                "grados": -15
+            }
+        },
+        {
+            "nombrecientifico": "Olea europea",
+            "nombre": [
+                "Olivo"
+            ],
+            "vegetacion": "Perenne",
+            "estructura": {
+                "copa": "Irregular",
+                "tronco": "Irregular con bifurcaciones",
+                "ramaje": "Tortuoso"
+            },
+            "altura": {
+                "minima": 8,
+                "maxima": 15
+            },
+            "color": {
+                "primavera": {
+                    "hojasjovenes": "",
+                    "hojasantiguas": {
+                        "haz": "Verde Oscuro",
+                        "enves": "Verde Plateado"
+                    }
+                },
+                "otono": ""
+            },
+            "resistenciaheladas": {
+                "tipo": "medias",
+                "grados": -10
+            }
+        },
+        {
+            "nombrecientifico": "Platanus Orientalis",
+            "nombre": [
+                "Platano"
+            ],
+            "vegetacion": "Caducifolio",
+            "altura": {
+                "minima": 20,
+                "maxima": 25
+            },
+            "estructura": {
+                "copa": "Ovoidal",
+                "tronco": "Recto",
+                "ramaje": "Expandido"
+            },
+            "color": {
+                "primavera": {
+                    "hojasjovenes": "",
+                    "hojasantiguas": {
+                        "haz": "Verde Medio",
+                        "enves": "Verde Claro"
+                    }
+                },
+                "otono": "Ocre"
+            },
+            "resistenciaheladas": {
+                "tipo": "fuertes",
+                "grados": -20
+            }
+        },
+        {
+            "nombrecientifico": "Quercus Ilex",
+            "nombre": [
+                "Encina"
+            ],
+            "vegetacion": "Perenne",
+            "altura": {
+                "minima": 25,
+                "maxima": 25
+            },
+            "estructura": {
+                "copa": "Esférica o Elíptica Irregular",
+                "tronco": "Recto",
+                "ramaje": "Tortuoso"
+            },
+            "color": {
+                "primavera": {
+                    "hojasjovenes": "Plateado",
+                    "hojasantiguas": {
+                        "haz": "Verde Medio",
+                        "enves": "Verde Claro"
+                    }
+                },
+                "otono": ""
+            },
+            "resistenciaheladas": {
+                "tipo": "fuertes",
+                "grados": -15
+            }
+        }
+    ]
+}
