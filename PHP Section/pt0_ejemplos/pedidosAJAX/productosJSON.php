@@ -1,5 +1,5 @@
 <?php
-require_once '../pedidos/bd.php';
+require_once 'bd.php';
 require_once 'sesionesJSON.php';
 if (!comprobarSesion()) return;
 

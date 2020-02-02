@@ -1,6 +1,6 @@
 <?php
-require '../correo/correo.php';
-require_once '../pedidos/bd.php';
+require 'correo.php';
+require_once 'bd.php';
 /*comprueba que el usuario haya abierto sesión o sale*/
 require 'sesionesJSON.php';
 if (!comprobarSesion()) return;

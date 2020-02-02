@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuracion>
+    <smtp>tls</smtp>
+    <host>smtp.gmail.com</host>
+    <port>587</port>
+    <username>arealg@ieslavereda.es</username>
+    <password>Twoseven3</password>
+</configuracion>

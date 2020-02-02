@@ -1,6 +1,6 @@
 <?php
 require_once 'sesionesJSON.php';
-require_once '../pedidos/bd.php';
+require_once 'bd.php';
 if (!comprobarSesion()) return;
 
 //$cat es PDOStatement que implementa la interfaz Traversable

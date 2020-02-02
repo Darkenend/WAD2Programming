@@ -3,19 +3,24 @@
  *  y modifican la estructura de la página
  */
 
- /**
-  * Solicita al servidor los datos de las categorías por GET asíncrono a 
-  * acategoriasJSON.php --> respuesta JSON
-  * y crea una lista de vínculos. Cuando recibe la respuesta del servidor:
-  *     - La convierte en un objeto JS que será un array. Cada elemento 
-  *     del array es un objeto con campos codCat y nombre
-  *     - Crea un elemento ul
-  *     - Por cada elemento del array crea un vínculo usando el nombre y el código
-  *     - Ese vínculo se introduce en un elemento li
-  *     - El elemento li se introduce en la lista
-  *     - Elimina el contenido de la sección "contenido" y luego introduce la lista en ella
-  * @returns false. Para queno se recarge la página
-  */
+/**
+ * Entero con la ultima categoria visitada para volver ahi tras añadir o eliminar un producto
+ */
+var actual_categoria = 0;
+
+/**
+ * Solicita al servidor los datos de las categorías por GET asíncrono a 
+ * acategoriasJSON.php --> respuesta JSON
+ * y crea una lista de vínculos. Cuando recibe la respuesta del servidor:
+ *     - La convierte en un objeto JS que será un array. Cada elemento 
+ *     del array es un objeto con campos codCat y nombre
+ *     - Crea un elemento ul
+ *     - Por cada elemento del array crea un vínculo usando el nombre y el código
+ *     - Ese vínculo se introduce en un elemento li
+ *     - El elemento li se introduce en la lista
+ *     - Elimina el contenido de la sección "contenido" y luego introduce la lista en ella
+ * @returns false. Para queno se recarge la página
+ */
 function cargarCategorias() {
 
     var xhttp = new XMLHttpRequest();
@@ -83,7 +88,7 @@ function cargarProductos(destino) {
     xhttp.onreadystatechange = function(){
 
         if (this.readyState == 4 && this.status == 200) {
-
+            actual_categoria = parseInt(document.location.href.lastIndexOf('='));
             var prod = document.getElementById("contenido");
             var titulo = document.getElementById("titulo");
             titulo.innerHTML = "Productos";
@@ -193,7 +198,8 @@ function anadirProductos(formulario) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             alert("producto añadido con éxito");
-            cargarCarrito();
+            if (actual_categoria === 0) cargarCarrito();
+            else cargarProductos(crearVinculoCategorias('', actual_categoria));
         }
     };
 
@@ -221,7 +227,8 @@ function eliminarProductos(formulario) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             alert("producto eliminado con éxito");
-            cargarCarrito();
+            if (actual_categoria === 0) cargarCarrito();
+            else cargarProductos(crearVinculoCategorias('', actual_categoria));
         }
     };
     var params = "cod=" + formulario.elements.cod.value + "&unidades=" + formulario.elements.unidades.value;
@@ -328,7 +335,9 @@ function procesarPedido() {
             alert(this.responseText);
             //Aquí habría que ir con ojo !==FALSE por los WARNING
             if (this.responseText == "TRUE") {
-                contenido.innerHTML = "Pedido realizado";
+                var confirmar = confirm("Seguro que quieres realizar el pedido?");
+                if (confirmar) contenido.innerHTML = "Pedido realizado";
+                else contenido.innerHTML = "Pedido no realizado";
             } else {
                 contenido.innerHTML = "Error al procesar el pedido";
             }

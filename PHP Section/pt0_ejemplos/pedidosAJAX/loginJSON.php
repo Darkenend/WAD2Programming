@@ -1,5 +1,5 @@
 <?php
-require_once '../pedidos/bd.php';
+require_once 'bd.php';
 /*
  * Procesa los datos del formulario
  * @return false si hay error.

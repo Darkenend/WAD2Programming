@@ -26,6 +26,11 @@
 		?>
 	</header>
 	<h2 id="titulo"></h2>
+	<!-- 
+		<section id="carrito"></section>
+
+		Seccion de carrito permanente debajo del titulo para que se vea correctamente
+	-->
 	<section id="contenido"></section>
 </section>
 

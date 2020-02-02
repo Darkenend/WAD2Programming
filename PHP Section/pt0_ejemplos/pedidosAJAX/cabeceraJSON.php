@@ -9,4 +9,9 @@
     <a href="#" onclick="cargarCategorias();">Home</a>
     <a href="#" onclick="cargarCarrito();">Carrito</a>
     <a href="#" onclick="cerrarSesionUnaPagina();">Cerrar sesión</a>
+    <?php
+        if ($_SESSION['usuario']['rol']) {
+            echo "<a href='#' onclick='cargarZonaAdmin();'>Zona Admin</a>";
+        }
+    ?>
 </header>

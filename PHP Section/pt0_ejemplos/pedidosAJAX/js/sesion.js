@@ -60,7 +60,7 @@ function login() {
                 document.getElementById("login").style.display = "none";
                 //ponemos usuario devuelto en el hueco correspondiente
                 document.getElementById("cabUsuario").innerHTML = "Usuario: " + usuario;
-                cargarCategorias();               
+                cargarCategorias();
             }
         }
     };

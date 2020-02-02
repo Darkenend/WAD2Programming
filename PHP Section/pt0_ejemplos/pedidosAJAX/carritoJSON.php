@@ -1,6 +1,6 @@
 <?php
 require 'sesionesJSON.php';
-require_once '../pedidos/bd.php';
+require_once 'bd.php';
 if (!comprobarSesion()) return;
 
 $productos = cargarProductos(array_keys($_SESSION['carrito']));

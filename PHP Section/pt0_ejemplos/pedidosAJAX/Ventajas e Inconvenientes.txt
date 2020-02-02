@@ -1,0 +1,12 @@
+Ventajas:
+
+— Menor uso de recursos del servidor ya que el carrito se maneja desde el propio cliente
+— Facilidad de uso de cookies para dar algo mas de persistencia al carrito, aparte de existir la posibilidad de tener recomendaciones
+— Un flujo de pagina mas natural y posiblemente mas visual
+— Potencialmente mejor compatibilidad con navegadores
+
+Desventajas:
+
+— Complejidad adicional para programar las funcionalidades
+— Menor robustez debido a la existencia de mas partes donde se puede albergar un fallo
+— Problemas de posicionamiento, ya que al usarlo todo en una pagina, puede ser mas confuso el saber "donde estas"

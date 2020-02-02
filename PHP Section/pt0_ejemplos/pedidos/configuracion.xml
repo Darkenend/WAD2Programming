@@ -2,7 +2,7 @@
 
 <configuracion>
     <ip>127.0.0.1</ip>
-    <nombre>pedidos</nombre>
-    <usuario>admin.pedidos</usuario>
+    <nombre>pedidos_ajax</nombre>
+    <usuario>admin.pedidos_ajax</usuario>
     <clave>123_admin.pedidos_321</clave>
 </configuracion>

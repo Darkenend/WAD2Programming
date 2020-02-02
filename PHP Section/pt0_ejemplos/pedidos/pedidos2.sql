@@ -19,9 +19,9 @@
 -- Current Database: `pedidos`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `pedidos` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `pedidos_ajax` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `pedidos`;
+USE `pedidos_ajax`;
 
 --
 -- Table structure for table `categorias`
