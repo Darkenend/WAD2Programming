@@ -18,34 +18,58 @@
             <h4 id="current-mode" class="text-center col-12 offset-xl-6 col-xl-3">Modo: Ninguno Seleccionado</h4>
         </div>
         <div class="row justify-content-center py-3" id="game-panel">
-
+            
         </div>
         <div class="row justify-content-center" id="main-panel">
-            <div class="col-xl-3">
+            <div class="col-xl-3 py-3">
                 <h6>
-                    Palabras por minuto
+                    Pulsaciones por minuto
                 </h6>
                 <p class="text-justify">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus dignissimos molestias dolor tempora id fuga voluptates reiciendis autem aperiam repudiandae animi rerum amet, sapiente eos. Aliquid, suscipit quasi! Totam, expedita?
+                    En este modo se contaran las pulsaciones hechas,
+                    contando los aciertos y los fallos como -2 aciertos,
+                    al final se mostrara la puntuación final y el numero
+                    de pulsaciones en un minuto.
+                </p>
+                <p class="text-justify">
+                    Este modo solo dura 60 segundos y estan permitidos
+                    fallos infinitos, se podria decir que la puntuación
+                    son las pulsaciones por minuto efectivas mientras
+                    que el numero de PPM mostrado serian las PPM en
+                    crudo.
                 </p>
                 <button type="button" id="ppm-btn" class="btn btn-primary" onclick="activateKPM()">
                     Modo PPM
                 </button>
             </div>
-            <div class="col-xl-3">
+            <div class="col-xl-3 py-3">
                 <h6>
                     Reto
                 </h6>
                 <p class="text-justify">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, dolorem perspiciatis. Nam reiciendis obcaecati laborum quia dignissimos maiores, temporibus mollitia iste suscipit eveniet quam inventore ducimus debitis. Quis, possimus in.
+                    El modo reto tiene dos opciones, el modo 'muerte súbita'
+                    y el modo 'contrarreloj', estos son modos mas difíciles.
                 </p>
-                <button type="button" id="challenge-btn" class="btn btn-primary" onclick="activateChallenge()" disabled>
+                <p class="text-justify">
+                    <h6>Muerte Súbita</h6>
+                    Se finaliza la ronda en el momento se cometa el primer fallo
+                </p>
+                <p class="text-justify">
+                    <h6>Contrarreloj</h6>
+                    Al principio hay virtualmente tiempo ilimitado por pulsacion
+                    (Hay un limite de 1 minuto para parar automaticamente en caso
+                    de estar AFK), pero despues a los 27 aciertos se añade un limite
+                    para las pulsaciones de 2 segundos, a los 54 es de 1 segundo y
+                    finalmente, a los 108 sera de medio segundo. Se finaliza al tener
+                    5 fallos.
+                </p>
+                <button type="button" id="challenge-btn" class="btn btn-primary" onclick="activateChallenge()">
                     Modo Reto
                 </button>
-                <button type="button" id="sudden-death" class="btn btn-secondary" onclick="activateSuddenDeath()" disabled hidden>
+                <button type="button" id="sudden-death" class="btn btn-secondary" onclick="activateSuddenDeath()" hidden disabled>
                     1 Fallo
                 </button>
-                <button type="button" id="timed" class="btn btn-secondary" onclick="activateTimed()" disabled hidden>
+                <button type="button" id="timed" class="btn btn-secondary" onclick="activateTimed()" hidden disabled>
                     Tiempo
                 </button>
             </div>
@@ -56,12 +80,14 @@
                     Empezar
                 </button>
             </div>
+            <div class="col-2" id="result-field">Puntuación: 0</div>
+            <div class="col-2" id="time-remaining">Tiempo: 0</div>
+            <div class="col-2" id="kpm">PPM: 0</div>
             <div class="col-2">
                 <button type="button" id="stop-btn" class="btn btn-danger" onclick="stop()" disabled>
                     Parar
                 </button>
             </div>
-            <div class="col-2" id="result-field">Resultado: </div>
         </div>
     </div>
 </body>
